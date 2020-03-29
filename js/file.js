@@ -5,7 +5,8 @@ num = String(num);
 for (let i = 0; i<num.length; i++) {
     value *=num[i]; 
 }
-let val = value ** 3;
+let val = value ** 4;
 
 console.log(String(val).substr(0,2));
 
+ 
