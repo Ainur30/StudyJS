@@ -18,20 +18,25 @@ if (lang === "ru") {
 // 1)b
 switch (lang) {
     case "en":
-        console.log(enWeek);
+        for (let wDay of enWeek ) {
+            console.log(wDay);
+        }
         break;
     case "ru":
-        console.log(ruWeek);
-        break;
+        for (let wDay of ruWeek) {
+            console.log(wDay);
+        }
+    break;
 }
 
+
 // 1)c
-let week = [
-    ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-];
-let schedule = (lang === "en") ? week[0] : week[1];
-console.log(schedule);
+ let week = {
+    "ru": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+    "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
+};
+console.log(week[lang][0]);
 
 // 2 задание 
 let namePerson = prompt("Введите свое имя?",'');
