@@ -41,7 +41,7 @@ console.log(getAccumulatedMonth ());
 
 let accumulatedMonth = getAccumulatedMonth();
 function getTargetMonth (){
-    console.log(`Цель будет достигнута за: ${mission/accumulatedMonth}`);
+    console.log(`Цель будет достигнута за: ${Math.ceil(`${mission/accumulatedMonth}`)}`);
 } 
 getTargetMonth();
 
