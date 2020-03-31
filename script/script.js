@@ -13,13 +13,15 @@ showTypeOf(money);
 showTypeOf(Income);
 showTypeOf(deposit);
 
+money = +prompt ("Ваш месячный доход?", "");
+addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую",'');
+deposit = confirm('Есть ли у вас депозит в банке?', '');
+
 let NewArr = addExpenses.toLowerCase().split(",");
 console.log(NewArr);
 
 
-money = +prompt ("Ваш месячный доход?", "");
-addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую",'');
-deposit = confirm('Есть ли у вас депозит в банке?', '');
+
 
 let expenses1 = prompt("Введите обязательную статью расходов?", ''),
     amount1 = +prompt("Во сколько это обойдется?", ''),
@@ -39,8 +41,9 @@ console.log(getAccumulatedMonth ());
 
 let accumulatedMonth = getAccumulatedMonth();
 function getTargetMonth (){
-    console.log(mission/accumulatedMonth);
-}
+    console.log(`Цель будет достигнута за: ${mission/accumulatedMonth}`);
+} 
+getTargetMonth();
 
 let budgetDay = Math.ceil(accumulatedMonth/30);
 console.log(`Бюджет на день: ${budgetDay}`);
