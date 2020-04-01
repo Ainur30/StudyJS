@@ -28,21 +28,21 @@ showTypeOf(deposit);
 
 console.log(addExpenses.toLowerCase().split(","));
 
-
-let expenses1 = prompt("Введите обязательную статью расходов?"),
-    amount1 = prompt("Во сколько это обойдется?", '');
-    while(!isNumber(amount1)) {
-        amount1 = prompt("Во сколько это обойдется?", '');
-    }
-let expanses2 = prompt("Введите обязательную статью расходов?"),
-    amount2 = prompt("Во сколько это обойдется?", '');
-    while(!isNumber(amount1)) {
-        amount1 = prompt("Во сколько это обойдется?", '');
-    }  
-    
+let expenses = []; 
 function getExpensesMonth(){
+    let sum = 0;
+    for (let i = 0; i < 2; i++){
 
-   return +amount1 + +amount2;
+        expenses[i] = prompt("Введите обязательную статью расходов?");
+        sum = prompt("Во сколько это обойдется?");
+        while (!isNumber(sum)){
+            sum = prompt("Во сколько это обойдется?");
+        }
+        sum = Number(sum);
+        sum += sum;
+    }
+    console.log(expenses);
+    return sum;
 
 }
 
