@@ -1,10 +1,21 @@
 "use strict";
-let money = 250,
-    Income = "music",
-    addExpenses = "интернет, такси, коммуналка",
-    deposit = true,
+let isNumber = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+};
+
+let money,
+    Income = "Фриланс",
+    addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую"),
+    deposit = confirm('Есть ли у вас депозит в банке?'),
     mission = 500000,
     period = 11;
+
+let start = function() {
+
+    do { money = prompt("Ваш месячный доход?");} 
+    while (!isNumber(money));
+};
+start();
 
 function showTypeOf(data){
     console.log(`${data}: ${typeof(data)}`);
@@ -13,35 +24,39 @@ showTypeOf(money);
 showTypeOf(Income);
 showTypeOf(deposit);
 
-money = +prompt ("Ваш месячный доход?", "");
-addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую",'');
-deposit = confirm('Есть ли у вас депозит в банке?', '');
-
-let NewArr = addExpenses.toLowerCase().split(",");
-console.log(NewArr);
+console.log(addExpenses.toLowerCase().split(","));
 
 
-
-
-let expenses1 = prompt("Введите обязательную статью расходов?", ''),
-    amount1 = +prompt("Во сколько это обойдется?", ''),
-    expenses2 = prompt("Введите обязательную статью расходов?", ''),
-    amount2 = +prompt("Во сколько это обойдется?", '');
-
-
+let expenses = [];
+  
 function getExpensesMonth(){
-    return amount1 + amount2;
-}
-console.log(getExpensesMonth());
+
+    let sum = 0;
+    for (let i = 0; i < 2; i++) {  
+        expenses[i] = prompt("Введите обязательную статью расходов?");
+        sum += +prompt("Во сколько это обойдется?", '');
+        while (!isNumber(sum)) {
+            sum = +prompt("Во сколько это обойдется?", '');
+        }
+    }
+    console.log(expenses);
+    return sum;
+
+    }
+
+
+let expensesAmount = getExpensesMonth();
+console.log(expensesAmount);
 
 function getAccumulatedMonth (){
-    return money - getExpensesMonth();
-}
+    return money - expensesAmount;
+    }
 console.log(getAccumulatedMonth ());
 
 let accumulatedMonth = getAccumulatedMonth();
 function getTargetMonth (){
-    console.log(`Цель будет достигнута за: ${Math.ceil(`${mission/accumulatedMonth}`)}`);
+    return  ((mission/accumulatedMonth) < 0) ?  console.log('Цель не будет достигнута') : 
+    console.log(`Цель будет достигнута за: ${Math.ceil(`${mission/accumulatedMonth}`)} месяц`);
 } 
 getTargetMonth();
 
