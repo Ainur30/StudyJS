@@ -1,14 +1,16 @@
 "use strict";
-
-
-function randNumber(){
-    let rand = 1 + Math.random() * 100;
-    return Math.floor(rand);
+function Numb(){
+    function randNumber(){
+        let rand = 1 + Math.random() * 100;
+        return Math.floor(rand);
+    }
+    return randNumber();
 }
 
 function checkNumber(count){
     
-    let res = randNumber();
+    let res = Numb();
+    alert(res);
     
     let guessNumber = prompt("Угадай число от 1 до 100"),
         n = 3,
