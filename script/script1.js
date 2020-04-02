@@ -6,12 +6,12 @@ function Numb(){
     }
     return randNumber();
 }
+let res = Numb();
+ 
+    
 
 function checkNumber(count){
-    
-    let res = Numb();
     alert(res);
-    
     let guessNumber = prompt("Угадай число от 1 до 100"),
         n = 3,
         replay;
@@ -36,6 +36,7 @@ function checkNumber(count){
                 alert("Конец игры");
                 return;
              } else {
+                res = Numb();
                 checkNumber(10);
             }
         } else {checkNumber(count);}
@@ -51,6 +52,7 @@ function checkNumber(count){
             alert("Конец игры");
             return ;
              } else {
+            res = Numb();
             checkNumber(10);
             }
             } else {checkNumber(count);}
@@ -61,6 +63,7 @@ function checkNumber(count){
         if (replay === false){
             alert("Конец игры");
         } else {
+            res = Numb();
             checkNumber(10);
         }
     } 
