@@ -6,12 +6,12 @@ function Numb(){
     }
     return randNumber();
 }
-let res = Numb();
- 
+ let res = Numb();
     
 
 function checkNumber(count){
-    alert(res);
+   
+    
     let guessNumber = prompt("Угадай число от 1 до 100"),
         n = 3,
         replay;
