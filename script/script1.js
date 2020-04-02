@@ -1,17 +1,18 @@
 "use strict";
 
 
+function randNumber(){
+    let rand = 1 + Math.random() * 100;
+    return Math.floor(rand);
+}
+
 function checkNumber(count){
+    
+    let res = randNumber();
     
     let guessNumber = prompt("Угадай число от 1 до 100"),
         n = 3,
         replay;
-
-
-    function randNumber(){
-        let rand = 1 + Math.random() * 100;
-        return Math.floor(rand);
-    }
    
     if (isNaN(guessNumber) || guessNumber === ""){
         guessNumber = alert("Введи число!");
@@ -23,7 +24,7 @@ function checkNumber(count){
         return;
     }
 
-    if (Number(guessNumber) > randNumber() ){
+    if (Number(guessNumber) > res ){
         count--;
         alert(`Загаданное число меньше, осталось попыток ${count}`);
         
@@ -38,7 +39,7 @@ function checkNumber(count){
         } else {checkNumber(count);}
         
 
-    } else if (Number(guessNumber) < randNumber()){
+    } else if (Number(guessNumber) < res ){
         count--;
         alert(`Загаданное число больше, осталось попыток ${count}`);
         
@@ -52,7 +53,7 @@ function checkNumber(count){
             }
             } else {checkNumber(count);}
         
-    } else if (Number(guessNumber) === randNumber()){
+    } else if (Number(guessNumber) === res){
 
         replay = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
         if (replay === false){
