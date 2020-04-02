@@ -17,8 +17,6 @@ let Income = "Фриланс",
     mission = 500000,
     period = 11;
 
-
-
 function showTypeOf(data){
     console.log(`${data}: ${typeof(data)}`);
 }
