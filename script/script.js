@@ -7,6 +7,7 @@ function checkNumber() {
         let rand = 1 + Math.random() * 100;
         return Math.floor(rand);
     }
+    
     if (isNaN(guessNumber) || guessNumber.trim() === ""){
         guessNumber = alert("Введи число!");
         checkNumber();
