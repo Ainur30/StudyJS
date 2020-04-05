@@ -57,13 +57,13 @@ let appData = {
         
 
 
-   },
-   getTargetMonth: function (){
+    },
+    getTargetMonth: function () {
 
         return ((appData.mission/appData.budgetMonth) < 0) ?  console.log('Цель не будет достигнута') : 
         console.log(`Цель будет достигнута за: ${Math.ceil(`${appData.mission/appData.budgetMonth}`)} месяц`);
     }, 
-    inComeStatus: function (){
+    getStatusIncome: function (){
         
         if (appData.budgetDay >= 1200) {
             console.log("У вас высокий уровень дохода");
@@ -89,7 +89,7 @@ let targetMonth = appData.getTargetMonth();
 
 
 
-let comeStatus = appData.inComeStatus();
+let comeStatus = appData.getStatusIncome();
 for (let key in appData) {
-    console.log(`Наша программа включает в себя данные: ${key} значение: ${appData[key]}`);
+    console.log(`Наша программа включает в себя данные: ${key}`);
 }
