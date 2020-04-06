@@ -3,10 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script/script.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <p id="day0"></p><br>
+    <p id="day1"></p><br>
+    <p id="day2"></p><br>
+    <p id="day3"></p><br>
+    <p id="day4"></p><br>
+   <i><p id="day5"></p><br></i>
+    <i><p id="day6"></p><br></i>
+<script>
+"use strict";
+let week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
+function getWeekDay(date) {
+  week = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+
+  return week[date.getDay()];
+}
+
+let date = new Date(); 
+
+
+for (let i = 0; i < week.length; i++){    
+    if (getWeekDay(date) === week[i]){
+        let day = document.getElementById(`day${i}`);
+        day.innerHTML = "<strong>" + week[i] + "</strong>";
+
+     } else { 
+    
+        let day = document.getElementById(`day${i}`);
+        day.innerHTML = week[i] ;
+    }
+    
+ }
+</script>
     
 </body>
 </html>

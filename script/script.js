@@ -80,16 +80,10 @@ let appData = {
    
 };
 appData.asking();
-
-let expensesMonth = appData.getExpensesMonth();
-
-let Month = appData.getBudget();
-
-let targetMonth = appData.getTargetMonth();
-
-
-
-let comeStatus = appData.getStatusIncome();
+appData.getExpensesMonth();
+appData.getBudget();
+appData.getTargetMonth();
+appData.getStatusIncome();
 for (let key in appData) {
     console.log(`Наша программа включает в себя данные: ${key}`);
 }
