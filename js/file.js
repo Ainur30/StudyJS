@@ -1,14 +1,22 @@
 "use strict";
-let num = 266219,
-    value = 1;
-num = String(num);
-for (let i = 0; i<num.length; i++) {
-    value *= num[i]; 
-}
-let val = value ** 3;
-
-console.log(String(val).substr(0,2));
 
 
+(function() {
 
- 
+        var arr = [ 'Первая строка', 'Вторая строка', 'Третья строка' ],
+
+            elem = document.getElementById( 'test' ), i = -1;
+
+        return function() {
+
+            if ( ++i < arr.length ) {
+
+                elem.innerHTML += arr[ i ] + '<br>';
+
+                //setTimeout( arguments.callee, 2000 );
+
+            }
+
+        }();
+
+    })();
