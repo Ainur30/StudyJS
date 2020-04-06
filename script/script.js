@@ -24,8 +24,7 @@ let appData = {
     period: 11,
     asking: function(){ 
             if (confirm('Есть ли у вас дополнительный источник заработка?')){
-                let number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-                
+
                 let itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
                 while (isNumber(itemIncome) || itemIncome.trim() ===""){
                     itemIncome = prompt('Какой у вас дополнительный заработок?', 'Таксую');
@@ -37,13 +36,13 @@ let appData = {
                 }
                 appData.income[itemIncome] = cashIncome;
             }
+
             let sum = 0, question;
              appData.addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую!");
             while (isNumber(appData.addExpenses) || appData.addExpenses.trim() === "" ){
                 appData.addExpenses = prompt("Перечислите возможные расходы за рассчитываемый период через запятую!");
             }
             appData.addExpenses = appData.addExpenses.toLowerCase().split(",");
-            
             
             appData.deposit = confirm('Есть ли у вас депозит в банке?');
             
@@ -66,21 +65,15 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     getExpensesMonth: function (){
-        for (let key in appData.expenses) {
-            
+        for (let key in appData.expenses) {       
             appData.expensesMonth += appData.expenses[key];
-   
         }
         console.log(appData.expensesMonth);
         return appData.expensesMonth;
     },
     getBudget: function (){
-
-        appData.budgetDay =  (money - appData.expensesMonth)/30;
-        appData.budgetMonth = (money - appData.expensesMonth);
-        
-
-
+        appData.budgetDay =  (appData.budget - appData.expensesMonth)/30;
+        appData.budgetMonth = (appData.budget - appData.expensesMonth);
     },
     getTargetMonth: function () {
 
