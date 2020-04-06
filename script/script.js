@@ -129,7 +129,8 @@ console.log(appData.percentDeposit, appData.moneyDeposit, appData.calcSavedMoney
 
 function transform(){
     
-    return appData.addExpenses.map((key) =>
+    return appData.addExpenses.map((key) => key.trim())
+    .map((key) =>
            key.slice(0, 1).toUpperCase() + key.slice(1)).join(', ');
 }
 console.log(transform());
