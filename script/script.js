@@ -9,22 +9,6 @@ let checkBox = document.querySelector('#deposit-check');
 console.log(checkBox);
 let input = document.querySelectorAll('.additional_income-item');
 console.log(input);
-/*
-let budgetMonth = document.querySelector('.budget_month-value');
-console.log(budgetMonth);
-let budgetDay = document.querySelector('.budget_day-value');
-console.log(budgetDay);
-let expensesMonth = document.querySelector('.expenses_month-value');
-console.log(expensesMonth);
-let additionalIncome = document.querySelector('.additional_income-value');
-console.log(additionalIncome);
-let additionalExpenses = document.querySelector('.additional_expenses-value');
-console.log(additionalExpenses);
-let incomePeriod = document.querySelector('.income_period-value');
-console.log(incomePeriod);
-let targetMonth = document.querySelector('.target_month-value');
-console.log(targetMonth);
-*/
 let budgetMonth = document.querySelectorAll(`[class$="-value"]`);
 console.log(budgetMonth);
 let salaryAmount = document.querySelector('.salary-amount');
