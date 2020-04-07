@@ -75,9 +75,9 @@ function zero(value)
 
         return day+"."+month+"."+year+" - "+hours+":"+minutes+":"+seconds;
     }
-
+let elem = document.getElementById('current_date_time_block2');
 setInterval(function () {
-  document.getElementById('current_date_time_block2').innerHTML = date_time();
+  elem.innerHTML = date_time();
 }, 1000);
 </script>
 </body>
