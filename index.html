@@ -65,13 +65,13 @@ function zero(value)
 
     function date_time()
     {
-        var current = new Date();
-        var day = zero(current.getDate());
-        var month = zero(current.getMonth()+1);
-        var year = current.getFullYear();
-        var hours = zero(current.getHours());
-        var minutes = zero(current.getMinutes());
-        var seconds = zero(current.getSeconds());
+        let current = new Date();
+        let day = zero(current.getDate());
+        let month = zero(current.getMonth()+1);
+        let year = current.getFullYear();
+        let hours = zero(current.getHours());
+        let minutes = zero(current.getMinutes());
+        let seconds = zero(current.getSeconds());
 
         return day+"."+month+"."+year+" - "+hours+":"+minutes+":"+seconds;
     }
