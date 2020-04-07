@@ -9,12 +9,13 @@
 <body>
     <div id="current_date_time_block2"></div>
     <script>
-        let hEnd, mEnd, sEnd, s = "", m = "", y = "",
+
+let hEnd, mEnd, sEnd, s = "", m = "", y = "",
     h = "", minute = "", seconds = "",
     day=new Date(),
-  month = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября",
-   "Октября", "Ноября", "Декабря"],
-  weekday = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+    month = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября",
+    "Октября", "Ноября", "Декабря"],
+    weekday = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 let sec = day.getSeconds();
 let hour = day.getHours();
 let min = day.getMinutes();
@@ -22,28 +23,27 @@ let min = day.getMinutes();
 
 function getHendItem(){
 if (hour.toString().slice(-1) >= 2 && hour.toString().slice(-1) <= 4 ){
-  hEnd = "а";
-  
+    hEnd = "а";
 } else if (hour.toString().slice(-1) >= 5 && hour.toString().slice(-1) <= 9){
-  hEnd = "ов";
+    hEnd = "ов";
   
 } else  {
-  hEnd = "";
+    hEnd = "";
   
 } 
  if ( min.toString().slice(-1) >= 2 && min.toString().slice(-1)  <= 4){
-  mEnd = "ы";
+    mEnd = "ы";
 } else if (min.toString().slice(-1) === 0 || (min.toString().slice(-1) >= 5 && min.toString().slice(-1) <= 9)){
-  mEnd = "";
+    mEnd = "";
 } else  {
-  mEnd = "а";
+    mEnd = "а";
 }
 if ( sec.toString().slice(-1) >= 2 && sec.toString().slice(-1)  <= 4){
-  sEnd = "ы";
+    sEnd = "ы";
 } else if (sec.toString().slice(-1) === 0 ||(sec.toString().slice(-1) >= 5 && sec.toString().slice(-1) <= 9)){
-  sEnd = "";
+    sEnd = "";
 } else  {
-  sEnd = "а";
+    sEnd = "а";
 }
 return;
 }
@@ -54,9 +54,7 @@ day.getDate() + " " + month[day.getMonth()] +" "+ day.getFullYear()+" года, 
 ` час${hEnd} ` + day.getMinutes() + ` минут${mEnd} ` + day.getSeconds() + ` секунд${sEnd} `+ "<br>");
 
 
-
-
-    function zero(value)
+function zero(value)
     {
         if (value < 10)
         {
@@ -78,8 +76,6 @@ day.getDate() + " " + month[day.getMonth()] +" "+ day.getFullYear()+" года, 
         return day+"."+month+"."+year+" - "+hours+":"+minutes+":"+seconds;
     }
 
-
-    
 setInterval(function () {
   document.getElementById('current_date_time_block2').innerHTML = date_time();
 }, 1000);
