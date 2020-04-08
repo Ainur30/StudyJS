@@ -1,44 +1,48 @@
 "use strict";
-let button = document.getElementById('start');
-console.log(button);
-let plus1 = document.getElementsByTagName('button')[0];
-console.log(plus1);
-let plus2 = document.getElementsByTagName('button')[1];
-console.log(plus2);
-let checkBox = document.querySelector('#deposit-check');
-console.log(checkBox);
-let input = document.querySelectorAll('.additional_income-item');
-console.log(input);
-let budgetMonth = document.querySelectorAll(`[class$="-value"]`);
-console.log(budgetMonth);
-let salaryAmount = document.querySelector('.salary-amount');
-console.log(salaryAmount);
-let incomeTitle = document.querySelector('[class="income-title"');
-console.log(incomeTitle);
-let incomeAmount = document.querySelector('.income-amount');
-console.log(incomeAmount);
-let additionalIncomeItem1 = document.getElementsByClassName('additional_income-item')[0];
-console.log(additionalIncomeItem1);
-let additionalIncomeItem2 = document.getElementsByClassName('additional_income-item')[1];
-console.log(additionalIncomeItem2);
-let expensesTitle = document.querySelector('[class="expenses-title"');
-console.log(expensesTitle);
-let expensesAmount = document.querySelector('.expenses-amount');
-console.log(expensesAmount);
-let additionalExpensesItem = document.querySelector('.additional_expenses-item');
-console.log(additionalExpensesItem);
-let depositAmount = document.querySelector('.deposit-amount');
-console.log(depositAmount);
-let depositPercent = document.querySelector('.deposit-percent');
-console.log(depositPercent);
-let targetAmount = document.querySelector('.target-amount');
-console.log(targetAmount);
-let periodSelect = document.querySelector('.period-select');
-console.log(periodSelect);
+let elems = document.querySelector('.books'),
+    book = document.querySelectorAll('.book'),
+    body = document.querySelector('body');
+    console.log(book);
+elems.prepend(book[4]);
+elems.prepend(book[0]);
+elems.prepend(book[1]);
+book[4].after(book[3]);
+book[5].after(book[2]);
+body.setAttribute("style", "background-image:url(./image/adv.jpg)" );
+console.log(body);
+let theTag = book[4].querySelector('h2');
+let ssylka = theTag.querySelector('a');
+ssylka.textContent = 'Книга 3. this и Прототипы Объектов';
+console.log(ssylka);
+let rek = document.querySelector('.adv');
+rek.remove();
+let theTerm = book[0].querySelector('ul');
+let theTerm1 = theTerm.querySelectorAll('li');
 
+theTerm1[10].before(theTerm1[2]);
+theTerm1[9].before(theTerm1[7]);
+theTerm1[3].before(theTerm1[6]);
+theTerm1[1].after(theTerm1[3]);
+theTerm1[4].before(theTerm1[8]);
 
+ theTerm = book[5].querySelector('ul');
+ theTerm1 = theTerm.querySelectorAll('li');
+ 
+ theTerm1[1].after(theTerm1[9]);
+ theTerm1[9].after(theTerm1[3]);
+ theTerm1[4].after(theTerm1[2]);
+ theTerm1[2].after(theTerm1[6]);
+ theTerm1[6].after(theTerm1[7]);
 
-
+ let newChapter = book[2].querySelector('ul');
+ let n = document.createElement('li');
+ newChapter.append(n);
+ n.textContent = 'Глава 8: За пределами ES6';
+ console.log(newChapter);
+ let chapters = newChapter.querySelectorAll(['li']);
+ console.log(chapters);
+ chapters[8].after(chapters[10]);
+ 
 
 
 
