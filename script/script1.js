@@ -163,9 +163,10 @@ let appData = {
         }
     },
     getBudget: function (){
-        appData.budgetDay =  (appData.budget - appData.expensesMonth)/30;
-        console.log(appData.inComeMonth);
+
+        appData.budgetDay =  (appData.budget + appData.inComeMonth - appData.expensesMonth)/30;
         appData.budgetMonth = (appData.budget + appData.inComeMonth - appData.expensesMonth);
+        
     },
     getTargetMonth: function () {
 
