@@ -230,15 +230,18 @@ let appData = {
     budgetMonth: 0,
     expensesMonth: 0,
     getExpensesMonth: function (){
+        
         for (let key in this.expenses) {       
             this.expensesMonth += +this.expenses[key];
-        }
-        return this.expensesMonth;
+        }  
+        //return this.expensesMonth;
     },
     getIncomeMonth: function(){
+
         for (let key in this.income) {
             this.inComeMonth += +this.income[key];
         }
+
     },
     getBudget: function (){
 
@@ -270,10 +273,11 @@ let appData = {
         });
         start.style.display = "none";
         cancel.style.display = 'block';
-    },
 
+    },
+    
     reset: function(){
-   
+        
         let leftElem = document.querySelector('.data');
         let rigthElem = document.querySelector('.result');
         let rigthInputs = rigthElem.querySelectorAll('[type ="text"]');
@@ -312,7 +316,7 @@ let appData = {
         }
         appData.budget = 0;
         appData.budgetDay = 0;
-        appData.budgetMonth = 0;
+        this.budgetMonth = 0;
         appData.expensesMonth = 0;
         appData.inComeMonth = 0;
         expensesMonthValue.value = 0;
@@ -324,7 +328,11 @@ let appData = {
             delete appData.expenses[key];
 
         }
-       
+        for (let key in appData.income){
+            delete appData.income[key];
+
+        }
+        console.log(appData.expenses);
     }
 
 };
@@ -350,4 +358,4 @@ inputName2.forEach((event)=>{
 });
  
  cancel.addEventListener('click', appData.reset);
- 
+ appData.reset.call(appData);
