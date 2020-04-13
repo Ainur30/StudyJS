@@ -234,7 +234,7 @@ let appData = {
         for (let key in this.expenses) {       
             this.expensesMonth += +this.expenses[key];
         }  
-        //return this.expensesMonth;
+       
     },
     getIncomeMonth: function(){
 
@@ -275,9 +275,12 @@ let appData = {
         cancel.style.display = 'block';
 
     },
-    
+    startReset: function(){
+        appData.reset();
+
+    },
     reset: function(){
-        
+        console.log(this);
         let leftElem = document.querySelector('.data');
         let rigthElem = document.querySelector('.result');
         let rigthInputs = rigthElem.querySelectorAll('[type ="text"]');
@@ -314,25 +317,25 @@ let appData = {
             incomeItems[i].remove();
             
         }
-        appData.budget = 0;
-        appData.budgetDay = 0;
+        this.budget = 0;
+        this.budgetDay = 0;
         this.budgetMonth = 0;
-        appData.expensesMonth = 0;
-        appData.inComeMonth = 0;
+        this.expensesMonth = 0;
+        this.inComeMonth = 0;
         expensesMonthValue.value = 0;
         budgetMonthValue.value = 0;
         budgetDayValue.value = 0;
-        appData.addIncome.length = 0;
-        appData.addExpenses.length = 0;
-        for (let key in appData.expenses){
-            delete appData.expenses[key];
+        this.addIncome.length = 0;
+        this.addExpenses.length = 0;
+        for (let key in this.expenses){
+            delete this.expenses[key];
 
         }
-        for (let key in appData.income){
-            delete appData.income[key];
+        for (let key in this.income){
+            delete this.income[key];
 
         }
-        console.log(appData.expenses);
+        
     }
 
 };
@@ -357,5 +360,5 @@ inputName2.forEach((event)=>{
     });
 });
  
- cancel.addEventListener('click', appData.reset);
- appData.reset.call(appData);
+ cancel.addEventListener('click', appData.startReset);
+ //appData.reset.call(appData);
