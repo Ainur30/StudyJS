@@ -56,7 +56,12 @@ let appData = {
        
 
     },
+    ountPeriod: function(){
 
+        incomePeriodValue.value = this.budgetMonth * periodSelect.value;
+        return incomePeriodValue.value;
+
+    },
     showResult: function(){
 
         budgetMonthValue.value = this.budgetMonth ;
@@ -66,11 +71,7 @@ let appData = {
         additionalIncomeValue.value = this.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
         incomePeriodValue.value = this.calcSavedMoney();
-        periodSelect.addEventListener('input', function(){
-           
-           incomePeriodValue.value = appData.budgetMonth * periodSelect.value;
-        
-        });
+        this.ountPeriod();
                 
     },
     addExpensesBlock: function(){
@@ -260,8 +261,9 @@ let appData = {
 
     },
     startObject: function(){
-       
-        appData.start();
+    
+        
+        this.start();
     },
     turnOff: function(){
 
@@ -276,7 +278,8 @@ let appData = {
 
     },
     startReset: function(){
-        appData.reset();
+     
+        this.reset();
 
     },
     reset: function(){
@@ -342,10 +345,11 @@ let appData = {
 
 salaryAmount.addEventListener('input', appData.checkInput);
 start.addEventListener('mouseover', appData.checkInput);
-start.addEventListener('click', appData.startObject);
+start.addEventListener('click', appData.startObject.bind(appData));
 expensesPlus.addEventListener('click', appData.addExpensesBlock);
 incomePlus.addEventListener('click', appData.addIncomeBlock);
 period.addEventListener('input', appData.addNewPeriod);
+periodSelect.addEventListener('input',  appData.ountPeriod.bind(appData));
 
 let inputName = document.querySelectorAll('[placeholder = "Наименование"]');
 inputName.forEach((event)=>{
@@ -360,5 +364,5 @@ inputName2.forEach((event)=>{
     });
 });
  
- cancel.addEventListener('click', appData.startReset);
- //appData.reset.call(appData);
+ cancel.addEventListener('click', appData.startReset.bind(appData));
+ 
