@@ -22,9 +22,19 @@ const render = function() {
 
   localStorage.setItem('Key', JSON.stringify(todoData));
 
+  let n = 0;
+
   todoData.forEach(function(item) {
     const li = document.createElement('li');
     li.classList.add('todo-item');
+
+    n+=1;
+    
+    item.id = n;
+
+    li.setAttribute('data-id', `${n}`);
+
+    let id = li.getAttribute('data-id');
 
     li.innerHTML = '<span class="text-todo">' + item.value + '</span>' +
     '<div class="todo-buttons">' +
@@ -47,11 +57,24 @@ const render = function() {
 
    
     const btnTodoRemove = li.querySelector('.todo-remove');
+
     btnTodoRemove.addEventListener('click', function() {
+      
 
-      todoData.splice(item, 1);
+      if (item.id === +id){
+        
+        delete todoData[id];
 
+        localStorage.setItem('Key', JSON.stringify(todoData));
+        
+        
+      } else {
+        alert('hello');
+
+      }
+      console.log(todoData);
       render();
+      
     });
     
   });
