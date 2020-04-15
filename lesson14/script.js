@@ -1,4 +1,6 @@
 'use strict';
+let body = document.querySelector('body');
+body.setAttribute(`style`, `margin:0;`);
 
 function DomElement(selector, height, width, bg, fontSize){
 
@@ -40,7 +42,7 @@ DomElement.prototype.cssText = function(){
     let elem = document.querySelector(`${this.selector}`);
    
     elem.setAttribute(`style`, `height:${this.height};width:${this.width};background:${this.bg};
-    vfont-size:${this.fontSize};position:absolute;margin:0;`);
+    vfont-size:${this.fontSize};position:absolute;`);
     
 
 };
