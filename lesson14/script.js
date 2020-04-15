@@ -63,16 +63,14 @@ DomElement.prototype.moveSquare = function(event){
 
     }
     if ( event.key === 'ArrowLeft'){
-        console.log('left');
-        
-        elem.style.left = this.left + 'px';
         this.left -= 10;
-
+        elem.style.left = this.left + 'px';
+       
     }
     if ( event.key === 'ArrowUp'){
-       
-        elem.style.top = this.top + 'px';
         this.top -= 10;
+        elem.style.top = this.top + 'px';
+        
 
     }
     if ( event.key === 'ArrowDown'){
@@ -91,4 +89,4 @@ element.makeElement();
 element.cssText();
 element.writeText();
 document.addEventListener('keydown', element.moveSquare.bind(element));
-document.addEventListener("DOMContentLoaded", DomElement);
+document.addEventListener("DOMContentLoaded", element);
