@@ -7,7 +7,11 @@ function DomElement(selector, height, width, bg, fontSize){
     this.width = width;
     this.bg = bg;
     this.fontSize = fontSize;
-    this.left = 10;
+    this.left = 0;
+    this.right = 0;
+    this.top = 0;
+    this.down = 0;
+    
 
 }
 
@@ -36,7 +40,7 @@ DomElement.prototype.cssText = function(){
     let elem = document.querySelector(`${this.selector}`);
    
     elem.setAttribute(`style`, `height:${this.height};width:${this.width};background:${this.bg};
-    vfont-size:${this.fontSize};position:absolute;`);
+    vfont-size:${this.fontSize};position:absolute;margin:0;`);
     
 
 };
@@ -44,7 +48,6 @@ DomElement.prototype.cssText = function(){
 DomElement.prototype.writeText = function(){
 
     let elem = document.querySelector(`${this.selector}`);
-    console.log(elem);
     elem.textContent = prompt('текст');
 
 };
@@ -53,10 +56,29 @@ DomElement.prototype.moveSquare = function(event){
 
     let elem = document.querySelector(`${this.selector}`);
     
-    if ( event.key === 'ArrowRigth'){
+    if ( event.key === 'ArrowRight'){
 
         elem.style.left = this.left + 'px';
         this.left += 10;
+
+    }
+    if ( event.key === 'ArrowLeft'){
+        console.log('left');
+        
+        elem.style.left = this.left + 'px';
+        this.left -= 10;
+
+    }
+    if ( event.key === 'ArrowUp'){
+       
+        elem.style.top = this.top + 'px';
+        this.top -= 10;
+
+    }
+    if ( event.key === 'ArrowDown'){
+
+        elem.style.top = this.top + 'px';
+        this.top += 10;
 
     }
 
@@ -68,5 +90,5 @@ element.makeElement();
 
 element.cssText();
 element.writeText();
-document.addEventListener('keydown', element.moveSquare);
+document.addEventListener('keydown', element.moveSquare.bind(element));
 document.addEventListener("DOMContentLoaded", DomElement);
