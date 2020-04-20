@@ -378,22 +378,24 @@ class AppData {
             depositBank.style.display = "inline-block";
             depositAmount.style.display = "inline-block";
             this.deposit = true;
-            depositBank.addEventListener('change', this.changePercent);
+            depositBank.addEventListener('input', this.changePercent);
 
         } else {
 
             depositBank.style.display = "none";
             depositAmount.style.display = "none";
+            depositPercent.style.display = 'none';
             depositAmount.value = '';
             depositBank.value = '';
             this.deposit = false;
+            depositBank.removeEventListener('input', this.changePercent);
 
         }
     }
     eventListeners(event) {
 
         salaryAmount.addEventListener('input', this.checkInput);
-        depositPercent.addEventListener('input', this.checkPercent);
+        depositPercent.addEventListener('change', this.checkPercent);
         start.addEventListener('mouseover', this.checkInput.bind(this));
         start.addEventListener('click', this.startObject.bind(this));
         expensesPlus.addEventListener('click', this.addExpIncBlock);
