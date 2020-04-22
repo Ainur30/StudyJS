@@ -36,13 +36,13 @@ button.addEventListener('click', function () {
 
 
     if (start) {
-        button.textContent = 'Пауза';
+        button.textContent = 'Запуск';
         cancelAnimationFrame(move);
         start = false;
     } else {
 
         start = true;
-        button.textContent = 'Запуск';
+        button.textContent = 'Пауза';
         move = requestAnimationFrame(animate);
     }
 
