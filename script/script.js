@@ -1,16 +1,19 @@
 window.addEventListener('DOMContentLoaded', function () {
+
     'use strict';
+    let date = new Date();
     function countTimer() {
         let timeHours = document.querySelector('#timer-hours'),
             timeMinutes = document.querySelector('#timer-minutes'),
             timeSeconds = document.querySelector('#timer-seconds');
 
         function getTimeRemaining() {
+            
 
             let date = new Date(),
-                hours = date.getHours(),
-                minutes = date.getMinutes(),
-                seconds = date.getSeconds();
+                hours = 23 - date.getHours(),
+                minutes = 60 - date.getMinutes(),
+                seconds = 60 - date.getSeconds();
 
             return { seconds, minutes, hours };
 
@@ -23,6 +26,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 timer.minutes = 0;
                 timer.seconds = 0;
             }
+            
 
             timeHours.textContent = timer.hours;
             timeMinutes.textContent = timer.minutes;
