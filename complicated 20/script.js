@@ -1,5 +1,13 @@
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
+    const slide = (el) => {
+        if (el.href === undefined) { return; }
+        let elems = el.href.split('#')[1];
+        document.querySelector('#' + elems).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    };
     const countTimer = (deadline) => {
         let timeHours = document.querySelector('#timer-hours'),
             timeMinutes = document.querySelector('#timer-minutes'),
@@ -56,8 +64,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const toggleMenu = () => {
         const btnMenu = document.querySelector('.col-3'),
             body = document.querySelector('body'),
-            menu = document.querySelector('menu'),
-            menuItem = menu.querySelectorAll('ul>li');
+            menu = document.querySelector('menu');
 
         const showMenu = () => {
             menu.classList.toggle('active-menu');
@@ -73,18 +80,18 @@ window.addEventListener('DOMContentLoaded', function () {
             let target = event.target;
 
             if (target.closest('.col-3')) {
-                console.log(target);
                 showMenu();
                 return;
             }
 
-            if (target.tagName === 'A' && target.closest('menu')) {
-                console.log(target);
-                showMenu();
+            if (target.tagName === 'A' && target.className !== 'close-btn') {
+                event.preventDefault();
+                menu.style.transform = `translate(-100%)`;
+                slide(target);
                 return;
             }
-           
-            if (target.closest('.menu') === null && target.closest('menu') === null ) {
+
+            if ((target.closest('.menu') === null && target.closest('menu') === null) || target.className === 'close-btn') {
                 console.log(target);
                 menu.style.transform = `translate(-100%)`;
                 return;
@@ -147,6 +154,15 @@ window.addEventListener('DOMContentLoaded', function () {
     };
 
     togglePopUp();
+
+    const mainDown = () => {
+        const btnDown = document.querySelector('a[href="#service-block"]');
+        btnDown.addEventListener('click', (event) => {
+            event.preventDefault();
+            slide(btnDown);
+        });
+    };
+    mainDown();
 
     //tab
 
