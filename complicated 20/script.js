@@ -73,19 +73,21 @@ window.addEventListener('DOMContentLoaded', function () {
             let target = event.target;
 
             if (target.closest('.col-3')) {
+                console.log(target);
                 showMenu();
                 return;
             }
 
             if (target.tagName === 'A' && target.closest('menu')) {
+                console.log(target);
                 showMenu();
                 return;
             }
-            target = target.closest('menu');
-            if (!target) {
-                showMenu();
+           
+            if (target.closest('.menu') === null && target.closest('menu') === null ) {
+                console.log(target);
+                menu.style.transform = `translate(-100%)`;
                 return;
-
             }
         });
 
