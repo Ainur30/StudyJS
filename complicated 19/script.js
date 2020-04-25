@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
-
     const slide = (el) => {
         if (el.href === undefined) { return; }
         let elems = el.href.split('#')[1];
@@ -60,14 +59,17 @@ window.addEventListener('DOMContentLoaded', function () {
         upDateClock();
 
     };
+    
 
     countTimer('23 april 2020');
 
     const toggleMenu = () => {
         const btnMenu = document.querySelector('.menu'),
             menu = document.querySelector('menu'),
+            body = document.querySelector('body'),
             closeBtn = document.querySelector('.close-btn'),
             menuItem = menu.querySelectorAll('ul>li');
+            
         const handlerMenu = (event) => {
             event.preventDefault();
             if (event.target.tagName === 'A' && event.target.className !== 'close-btn') {
@@ -80,9 +82,28 @@ window.addEventListener('DOMContentLoaded', function () {
                 menu.style.transform = `translate(-100%)`;
             }
         };
-        btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
-        menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));
+        body.addEventListener('click', (event) => {
+            let target = event.target;
+            
+            if (target.closest('.col-3')) {
+                handlerMenu();
+                return;
+            }
+        
+            if (target.tagName === 'A' && target.closest('menu')) {
+                handlerMenu();
+                return;
+            }
+            target = target.closest('menu');
+            if(!target){
+                handlerMenu();
+                return;
+
+            }
+        });
+        //btnMenu.addEventListener('click', handlerMenu);
+        //closeBtn.addEventListener('click', handlerMenu);
+        //menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));
     };
     toggleMenu();
 
@@ -127,6 +148,7 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     };
     togglePopUp();
+    
 
     const mainDown = () => {
         const btnDown = document.querySelector('a[href="#service-block"]');
