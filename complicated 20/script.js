@@ -91,7 +91,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            if ((target.closest('.menu') === null && target.closest('menu') === null) || target.className === 'close-btn') {
+            if ((target.closest('.menu') === null && target.closest('menu') === null) || target.className === `clo
+            se-btn`){
                 console.log(target);
                 menu.style.transform = `translate(-100%)`;
                 return;
