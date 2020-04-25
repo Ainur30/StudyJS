@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', function () {
     'use strict';
-    const slide = (el) => {
-        if (el.href === undefined) { return; }
-        let elems = el.href.split('#')[1];
-        document.querySelector('#' + elems).scrollIntoView({
+    const sliding = (elem) => {
+        if (elem.href === undefined) { return; }
+        let elems = elem.href.split('#')[1];
+        document.querySelector(`#` + elems).scrollIntoView({
             behavior: 'smooth',
             block: 'start'
         });
@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', function () {
         let timeHours = document.querySelector('#timer-hours'),
             timeMinutes = document.querySelector('#timer-minutes'),
             timeSeconds = document.querySelector('#timer-seconds');
-
 
         const getTimeRemaining = () => {
             let dateStop = new Date(deadline).getTime(),
@@ -84,16 +83,17 @@ window.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            if (target.tagName === 'A' && target.className !== 'close-btn') {
+            if (target.tagName === 'A' && target.className !== 'close-btn' &&
+                target.className !== 'portfolio-btn next' &&
+                target.className !== 'portfolio-btn prev') {
                 event.preventDefault();
+                sliding(target);
                 menu.style.transform = `translate(-100%)`;
-                slide(target);
                 return;
             }
 
             if ((target.closest('.menu') === null && target.closest('menu') === null) || target.className ===
                 `close-btn`) {
-                console.log(target);
                 menu.style.transform = `translate(-100%)`;
                 return;
             }
@@ -124,7 +124,6 @@ window.addEventListener('DOMContentLoaded', function () {
         popupBtn.forEach((elem) => {
 
             elem.addEventListener('click', () => {
-
                 let count = -100;
                 let pop;
                 const start = () => {
@@ -160,7 +159,7 @@ window.addEventListener('DOMContentLoaded', function () {
         const btnDown = document.querySelector('a[href="#service-block"]');
         btnDown.addEventListener('click', (event) => {
             event.preventDefault();
-            slide(btnDown);
+            sliding(btnDown);
         });
     };
     mainDown();

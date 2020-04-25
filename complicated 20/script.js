@@ -93,7 +93,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
             if ((target.closest('.menu') === null && target.closest('menu') === null) || target.className === `clo
             se-btn`){
-                console.log(target);
                 menu.style.transform = `translate(-100%)`;
                 return;
             }
@@ -190,7 +189,6 @@ window.addEventListener('DOMContentLoaded', function () {
             target = target.closest('.service-header-tab');
 
             if (target) {
-
                 tab.forEach((item, i) => {
                     if (item === target) {
                         toggleTabContent(i);
