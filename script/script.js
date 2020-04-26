@@ -204,7 +204,8 @@ window.addEventListener('DOMContentLoaded', function () {
             dotsCont = document.querySelector('.portfolio-dots'),
             slider = document.querySelector('.portfolio-content');
         const dots = () => {
-            for (let i = 0; i < slide.length; i++) {
+            const length = slide.length;
+            for (let i = 0; i < length; i++) {
                 let dot = document.createElement('li');
                 dot.classList.add('dot');
                 dotsCont.append(dot);
@@ -290,5 +291,33 @@ window.addEventListener('DOMContentLoaded', function () {
     };
 
     slider();
+
+    // our team
+    const img = document.querySelectorAll('.command__photo');
+    img.forEach((elem) => {
+       let photo;
+       elem.addEventListener('mouseenter', (e) => {
+           photo = event.target.src;
+           event.target.src = event.target.dataset.img;
+
+       });
+       elem.addEventListener('mouseout', (e) => {
+          
+            event.target.src = photo;
+
+       });
+    });
+
+    //only number
+
+    let square = document.querySelectorAll('.calc-item');
+    
+    square.forEach((elem) => {
+        elem.addEventListener('input', (e) => {
+            event.target.value = event.target.value.replace(/\D/gi, '');
+        });
+
+    });
+    
 
 });
