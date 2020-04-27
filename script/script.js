@@ -310,14 +310,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
     //only number
 
-    let square = document.querySelectorAll('.calc-item');
-    
-    square.forEach((elem) => {
-        elem.addEventListener('input', (e) => {
-            event.target.value = event.target.value.replace(/\D/gi, '');
+    let calcItems = document.querySelectorAll('.calc-item');
+ 
+    calcItems.forEach((elem) => {
+        elem.addEventListener('keydown', (event) => {
+            let target = event.target;
+            if (event.keyCode === 69 || event.keyCode > 100){
+                event.preventDefault();
+            }   
         });
 
     });
-    
 
 });
+
