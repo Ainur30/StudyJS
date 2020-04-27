@@ -293,34 +293,39 @@ window.addEventListener('DOMContentLoaded', function () {
     slider();
 
     // our team
-    const img = document.querySelectorAll('.command__photo');
-    img.forEach((elem) => {
-       let photo;
-       elem.addEventListener('mouseenter', (e) => {
-           photo = event.target.src;
-           event.target.src = event.target.dataset.img;
+    const teamPhoto = () => {
+        const img = document.querySelectorAll('.command__photo');
+        img.forEach((elem) => {
+            let photo;
+            elem.addEventListener('mouseenter', (event) => {
+                photo = event.target.src;
+                event.target.src = event.target.dataset.img;
 
-       });
-       elem.addEventListener('mouseout', (e) => {
-          
-            event.target.src = photo;
+            });
+            elem.addEventListener('mouseout', (event) => {
 
-       });
-    });
+                event.target.src = photo;
 
-    //only number
-
-    let calcItems = document.querySelectorAll('.calc-item');
- 
-    calcItems.forEach((elem) => {
-        elem.addEventListener('keydown', (event) => {
-            let target = event.target;
-            if (event.keyCode === 69 || event.keyCode > 100){
-                event.preventDefault();
-            }   
+            });
         });
 
-    });
+    };
+    teamPhoto();
 
+    const checkInputs = () => {
+        let calcItems = document.querySelectorAll('.calc-item');
+
+        calcItems.forEach((elem) => {
+            elem.addEventListener('keydown', (event) => {
+                let target = event.target;
+                if (event.keyCode === 69 || event.keyCode > 100) {
+                    event.preventDefault();
+                }
+            });
+
+        });
+
+    };
+    checkInputs();
 });
 
