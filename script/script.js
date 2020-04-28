@@ -360,9 +360,9 @@ window.addEventListener('DOMContentLoaded', function () {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
             const getTotal = () => {
-                counter += 1;
+                counter += 50;
                 totalValue.textContent = counter;
-                if (counter === total) {
+                if (counter >= total) {
                     clearInterval(interval);
                 }
             };
