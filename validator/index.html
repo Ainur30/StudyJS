@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
@@ -16,16 +17,43 @@
             <button type="submit">submit</button>
             <button type="reset">reset</button> 
         </form>
+        <form id="myform1">
+            <label for="phone">phone</label>
+            <input type="text" id="phone" name="phone" placeholder="phone">
+            <label for="email">email</label>
+            <input type="text" id="email" name="email" placeholder="email">
+            <br>
+            <button type="submit">submit</button>
+            <button type="reset">reset</button> 
+        </form>
     </section>
 </body>
 <script src="validator.js"></script>
 <script>
+const forms = document.querySelectorAll('form');
+for(let i = 0; i < forms.length; i++){
+    id = forms[i].id;
 const valid = new Validator({
-    selector: '#myform',
-    pattern: {},
-    method: {}
+    selector: '#' + id,
+    pattern: {
+        phone: /^\+380\d{7}$/,
+        zip: /\d{5,6}/
+    },
+   
+    method: {
+        'phone': [
+            ['notEmpty'],
+                ['pattern', 'phone']
+        ],
+        'email': [
+            ['notEmpty'],
+                ['pattern', 'email']
+        ]
+    }
+
 });
 
 valid.init();
+}
 </script>
 </html>
