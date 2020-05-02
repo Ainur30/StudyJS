@@ -379,6 +379,8 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     };
     calc();
+
+    
     
     // send-ajax-form
 
@@ -404,10 +406,10 @@ window.addEventListener('DOMContentLoaded', function () {
             request.send(formData);
         
         request.addEventListener('readystatechange', () => {
-            statusMessage.textContent = loadMessage;
+            //statusMessage.textContent = loadMessage;
             alert('hello');
         });
-
+        alert('hello');
 
         });
 
