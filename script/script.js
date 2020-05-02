@@ -379,5 +379,40 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     };
     calc();
+    
+    // send-ajax-form
+
+    const sendForm = () => {
+        const errorMessage = 'Что-то пошло не так...',
+            loadMessage = 'Загрузка...',
+            successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
+
+        const form = document.getElementById('form1');
+
+        const statusMessage = document.createElement('div');
+        statusMessage.style.cssText = 'font-size: 2rem;';
+
+
+        form.addEventListener('submit', (event)=>{
+            event.preventDefault();
+            form.append(statusMessage);
+            
+            const request = new XMLHttpRequest();
+            request.open('POST', './server.php');
+            request.setRequestHeader('Content-Type', 'multipart/form-data');
+            const formData = new FormData(form);
+            request.send(formData);
+        
+        request.addEventListener('readystatechange', () => {
+            statusMessage.textContent = loadMessage;
+            alert('hello');
+        });
+
+
+        });
+
+    };
+    sendForm();
+
 });
 
