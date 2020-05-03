@@ -17,8 +17,7 @@ class Validator {
     this.elementsForm.forEach(el => el.addEventListener('change', this.checkIt.bind(this)));
     this.form.addEventListener('submit', e => {
       this.elementsForm.forEach(elem => this.checkIt({target: elem}));
-
-      if (this.error.size) {
+      if (this.error.size !== 0) {
         e.preventDefault();
       }
     });
@@ -102,7 +101,7 @@ class Validator {
   setPattern() {
 
     if (!this.pattern.name) {     
-      this.pattern.name = /^[а-яА-Я]+$/i;
+      this.pattern.name = /^[а-яА-Я\s]+$/i;
     }
     if (!this.pattern.message) {     
       this.pattern.message = /^[а-яА-Я ]+$/i;
