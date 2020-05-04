@@ -397,10 +397,6 @@ window.addEventListener('DOMContentLoaded', function () {
         form.append(elem1);
         statusMessage.style.cssText = 'font-size: 2rem;';
 
-        const loader = () => {
-            elem1.classList.add('loader');
-        };
-
         forms.forEach(form => {
             form.addEventListener('input', (event) => {
                 let target = event.target;
@@ -417,7 +413,7 @@ window.addEventListener('DOMContentLoaded', function () {
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
             request.addEventListener('readystatechange', () => {
-                loader();
+                elem1.classList.add('loader');
 
                 if (request.readyState !== 4) {
                     return;
@@ -437,7 +433,7 @@ window.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', (event) => {
             statusMessage.textContent = '';
             event.preventDefault();
-            loader();
+            elem1.classList.add('loader');
             let inputs = form.querySelectorAll('input');
             const formData = new FormData(form);
             let body = {};
@@ -470,7 +466,7 @@ window.addEventListener('DOMContentLoaded', function () {
             event.preventDefault();
             form1.append(elem1);
             form1.append(statusMessage);
-            loader();
+            elem1.classList.add('loader');
             statusMessage.setAttribute('style', 'color: white;');
             let inputs = form1.querySelectorAll('input');
             const formData = new FormData(form1);
@@ -497,7 +493,7 @@ window.addEventListener('DOMContentLoaded', function () {
             statusMessage.textContent = '';
             event.preventDefault();
             form2.append(elem1);
-            loader();
+            elem1.classList.add('loader');
             let inputs = form2.querySelectorAll('input');
             const formData = new FormData(form1);
             let body = {};
