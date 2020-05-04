@@ -379,8 +379,8 @@ window.addEventListener('DOMContentLoaded', function () {
     };
     calc();
 
-    
-    
+
+
     // send-ajax-form
 
     const sendForm = () => {
@@ -396,67 +396,58 @@ window.addEventListener('DOMContentLoaded', function () {
         const statusMessage = document.createElement('div');
         form.append(elem1);
         statusMessage.style.cssText = 'font-size: 2rem;';
-        
+
         const loader = () => {
-            //elem.classList.add('preloader');
             elem1.classList.add('loader');
         };
-        
+
         forms.forEach(form => {
             form.addEventListener('input', (event) => {
-              let target = event.target;
-              if (target.name === 'user_phone') {
-                target.value = target.value.replace(/[^\+\d]/g, '');
-              }
-      
-              if (target.name === 'user_name' || target.name === 'user_message') {
-                target.value = target.value.replace(/[^а-я ]/gi, '');
-              }
+                let target = event.target;
+                if (target.name === 'user_phone') {
+                    target.value = target.value.replace(/[^\+\d]/g, '');
+                }
+
+                if (target.name === 'user_name' || target.name === 'user_message') {
+                    target.value = target.value.replace(/[^а-я ]/gi, '');
+                }
             });
         });
 
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
             request.addEventListener('readystatechange', () => {
-                //statusMessage.textContent = loadMessage;
                 loader();
 
-        
-                if (request.readyState !== 4){
+                if (request.readyState !== 4) {
                     return;
                 }
-        
-                if(request.status === 200){
-                    //elem.classList.remove('preloader');
-                    //elem1.classList.remove('loader');
+
+                if (request.status === 200) {
                     outputData();
                 } else {
-                   // elem.classList.remove('preloader');
-                   // elem1.classList.remove('loader');
                     errorData(request.status);
                 }
             });
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
-        };   
+        };
 
-        form.addEventListener('submit', (event)=>{
+        form.addEventListener('submit', (event) => {
             statusMessage.textContent = '';
             event.preventDefault();
             loader();
             let inputs = form.querySelectorAll('input');
-            //statusMessage.textContent = loadMessage;
-            
             const formData = new FormData(form);
             let body = {};
             formData.forEach((val, key) => {
                 body[key] = val;
             });
 
-            postData(body, 
+            postData(body,
                 () => {
-                    
+
                     form.append(statusMessage);
                     elem1.classList.remove('loader');
                     statusMessage.textContent = successMessage;
@@ -464,7 +455,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 },
                 (error) => {
-                  
+
                     form.append(statusMessage);
                     elem1.classList.remove('loader');
                     statusMessage.textContent = errorMessage;
@@ -474,7 +465,7 @@ window.addEventListener('DOMContentLoaded', function () {
             );
         });
 
-        form1.addEventListener('submit', (event)=>{
+        form1.addEventListener('submit', (event) => {
             statusMessage.textContent = '';
             event.preventDefault();
             form1.append(elem1);
@@ -482,13 +473,12 @@ window.addEventListener('DOMContentLoaded', function () {
             loader();
             statusMessage.setAttribute('style', 'color: white;');
             let inputs = form1.querySelectorAll('input');
-            //statusMessage.textContent = loadMessage;
             const formData = new FormData(form1);
             let body = {};
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
+            postData(body,
                 () => {
                     elem1.classList.remove('loader');
                     statusMessage.textContent = successMessage;
@@ -503,19 +493,18 @@ window.addEventListener('DOMContentLoaded', function () {
             );
         });
 
-        form2.addEventListener('submit', (event)=>{
+        form2.addEventListener('submit', (event) => {
             statusMessage.textContent = '';
             event.preventDefault();
             form2.append(elem1);
             loader();
             let inputs = form2.querySelectorAll('input');
-            //statusMessage.textContent = loadMessage;
             const formData = new FormData(form1);
             let body = {};
             formData.forEach((val, key) => {
                 body[key] = val;
             });
-            postData(body, 
+            postData(body,
                 () => {
                     elem1.classList.remove('loader');
                     form2.append(statusMessage);
@@ -530,7 +519,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     console.error(error);
                 }
             );
-        }); 
+        });
     };
     sendForm();
 
