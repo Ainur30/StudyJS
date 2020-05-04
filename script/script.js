@@ -389,19 +389,19 @@ window.addEventListener('DOMContentLoaded', function () {
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
         const form = document.getElementById('form1');
-        const body = document.querySelector('body');
         const forms = document.querySelectorAll('form');
-        const button = document.querySelector('.form-btn');
-        const elem = document.getElementById('preloader');
         const elem1 = document.getElementById('loader');
         const form1 = document.getElementById('form3');
         const form2 = document.getElementById('form2');
         const statusMessage = document.createElement('div');
+        form.append(elem1);
         statusMessage.style.cssText = 'font-size: 2rem;';
+        
         const loader = () => {
-            elem.classList.add('preloader');
+            //elem.classList.add('preloader');
             elem1.classList.add('loader');
         };
+        
         forms.forEach(form => {
             form.addEventListener('input', (event) => {
               let target = event.target;
@@ -418,8 +418,8 @@ window.addEventListener('DOMContentLoaded', function () {
         const postData = (body, outputData, errorData) => {
             const request = new XMLHttpRequest();
             request.addEventListener('readystatechange', () => {
+                //statusMessage.textContent = loadMessage;
                 loader();
-                statusMessage.textContent = loadMessage;
 
         
                 if (request.readyState !== 4){
@@ -427,12 +427,12 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
         
                 if(request.status === 200){
-                    elem.classList.remove('preloader');
-                    elem1.classList.remove('loader');
+                    //elem.classList.remove('preloader');
+                    //elem1.classList.remove('loader');
                     outputData();
                 } else {
-                    elem.classList.remove('preloader');
-                    elem1.classList.remove('loader');
+                   // elem.classList.remove('preloader');
+                   // elem1.classList.remove('loader');
                     errorData(request.status);
                 }
             });
@@ -444,9 +444,10 @@ window.addEventListener('DOMContentLoaded', function () {
         form.addEventListener('submit', (event)=>{
             statusMessage.textContent = '';
             event.preventDefault();
-            form.append(statusMessage);
+            loader();
             let inputs = form.querySelectorAll('input');
-            statusMessage.textContent = loadMessage;
+            //statusMessage.textContent = loadMessage;
+            
             const formData = new FormData(form);
             let body = {};
             formData.forEach((val, key) => {
@@ -455,11 +456,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
             postData(body, 
                 () => {
+                    
+                    form.append(statusMessage);
+                    elem1.classList.remove('loader');
                     statusMessage.textContent = successMessage;
                     inputs.forEach(elem => elem.value = '');
 
                 },
                 (error) => {
+                  
+                    form.append(statusMessage);
+                    elem1.classList.remove('loader');
                     statusMessage.textContent = errorMessage;
                     inputs.forEach(elem => elem.value = '');
                     console.error(error);
@@ -468,11 +475,14 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         form1.addEventListener('submit', (event)=>{
+            statusMessage.textContent = '';
             event.preventDefault();
+            form1.append(elem1);
             form1.append(statusMessage);
+            loader();
             statusMessage.setAttribute('style', 'color: white;');
             let inputs = form1.querySelectorAll('input');
-            statusMessage.textContent = loadMessage;
+            //statusMessage.textContent = loadMessage;
             const formData = new FormData(form1);
             let body = {};
             formData.forEach((val, key) => {
@@ -480,10 +490,12 @@ window.addEventListener('DOMContentLoaded', function () {
             });
             postData(body, 
                 () => {
+                    elem1.classList.remove('loader');
                     statusMessage.textContent = successMessage;
                     inputs.forEach(elem => elem.value = '');
                 },
                 (error) => {
+                    elem1.classList.remove('loader');
                     statusMessage.textContent = errorMessage;
                     inputs.forEach(elem => elem.value = '');
                     console.error(error);
@@ -492,10 +504,12 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         form2.addEventListener('submit', (event)=>{
+            statusMessage.textContent = '';
             event.preventDefault();
-            form2.append(statusMessage);
+            form2.append(elem1);
+            loader();
             let inputs = form2.querySelectorAll('input');
-            statusMessage.textContent = loadMessage;
+            //statusMessage.textContent = loadMessage;
             const formData = new FormData(form1);
             let body = {};
             formData.forEach((val, key) => {
@@ -503,10 +517,14 @@ window.addEventListener('DOMContentLoaded', function () {
             });
             postData(body, 
                 () => {
+                    elem1.classList.remove('loader');
+                    form2.append(statusMessage);
                     statusMessage.textContent = successMessage;
                     inputs.forEach(elem => elem.value = '');
                 },
                 (error) => {
+                    elem1.classList.remove('loader');
+                    form2.append(statusMessage);
                     statusMessage.textContent = errorMessage;
                     inputs.forEach(elem => elem.value = '');
                     console.error(error);
