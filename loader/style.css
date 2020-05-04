@@ -10,7 +10,6 @@
 .loader{
    
     position: relative;
-    text-align: center;
     margin: 0 auto;
     width: 30px;
     height: 30px;
@@ -19,6 +18,10 @@
     border-top-color: blue;
     animation: 1s spin infinite linear; 
 
+}
+
+#form2 .form-btn {
+    margin-bottom:25px;
 }
 
 @keyframes spin {
