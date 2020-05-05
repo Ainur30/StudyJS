@@ -388,28 +388,30 @@ window.addEventListener('DOMContentLoaded', function () {
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
-        const form = document.getElementById('form1');
+        
         const forms = document.querySelectorAll('form');
         const elem1 = document.getElementById('loader');
-        const form1 = document.getElementById('form3');
-        const form2 = document.getElementById('form2');
         const statusMessage = document.createElement('div');
-        form.append(elem1);
-        statusMessage.style.cssText = 'font-size: 2rem;';
+       
+        statusMessage.style.cssText = `font-size: 2rem;
+        color: #fff; `;
 
         const senForm = (body) => {
             return new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
                 request.addEventListener('readystatechange', () => {
                     elem1.classList.add('loader');
+                    let inputs = document.querySelectorAll('input');
 
                     if (request.readyState !== 4) {
                         return;
                     }
 
                     if (request.status === 200) {
+                        inputs.forEach(elem => elem.value = '');
                         resolve();
                     } else {
+                        inputs.forEach(elem => elem.value = '');
                         reject(request.status);
                     }
                 });
@@ -442,12 +444,12 @@ window.addEventListener('DOMContentLoaded', function () {
             });
 
             form.addEventListener('submit', (event) => {
+
                 event.preventDefault();
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
                 form.appendChild(statusMessage);
-                statusMessage.style.cssText = `font-size: 2rem;
-                color: #fff; `;
+                
                 form.append(elem1);
                 const formData = new FormData(form);
 
