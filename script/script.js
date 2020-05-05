@@ -397,20 +397,7 @@ window.addEventListener('DOMContentLoaded', function () {
         form.append(elem1);
         statusMessage.style.cssText = 'font-size: 2rem;';
 
-        forms.forEach(form => {
-            form.addEventListener('input', (event) => {
-                let target = event.target;
-                if (target.name === 'user_phone') {
-                    target.value = target.value.replace(/[^\+\d]/g, '');
-                }
-
-                if (target.name === 'user_name' || target.name === 'user_message') {
-                    target.value = target.value.replace(/[^а-я ]/gi, '');
-                }
-            });
-        });
-
-        const sendsForm = (body, outputData, errorData) => {
+        const senForm = (body) => {
             return new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
                 request.addEventListener('readystatechange', () => {
@@ -421,111 +408,80 @@ window.addEventListener('DOMContentLoaded', function () {
                     }
 
                     if (request.status === 200) {
-                        resolve(outputData);
+                        resolve();
                     } else {
-                        reject(errorData(request.status));
+                        reject(request.status);
                     }
                 });
                 request.open('POST', './server.php');
                 request.setRequestHeader('Content-Type', 'application/json');
                 request.send(JSON.stringify(body));
             });
-            
+
         };
-        const formse = ()=>{
-            form.addEventListener('submit', (event) => {
-                return new Promise(()=>{
-                    statusMessage.textContent = '';
-                event.preventDefault();
-                elem1.classList.add('loader');
-                let inputs = form.querySelectorAll('input');
-                const formData = new FormData(form);
-                let body = {};
-                formData.forEach((val, key) => {
-                    body[key] = val;
-                });
-    
-                sendsForm(body,
-                    () => {
-    
-                        form.append(statusMessage);
-                        elem1.classList.remove('loader');
-                        statusMessage.textContent = successMessage;
-                        inputs.forEach(elem => elem.value = '');
-    
-                    },
-                    (error) => {
-    
-                        form.append(statusMessage);
-                        elem1.classList.remove('loader');
-                        statusMessage.textContent = errorMessage;
-                        inputs.forEach(elem => elem.value = '');
-                        console.error(error);
+
+
+
+        forms.forEach(form => {
+
+            form.addEventListener('input', (event) => {
+                let target = event.target;
+                if (target.name === 'user_phone') {
+                    if (target.style) {
+                        target.style.border = 'none';
                     }
-                );
-    
-                });
-                
+                    target.value = target.value.replace(/[^\+\d]/g, '');
+                    if (!/^\+?(\d){0,18}$/g.test(target.value)) {
+                        target.value = target.value.substring(0, target.value.length - 1);
+                    }
+
+                }
+                if (target.name === 'user_name' || target.name === 'user_message') {
+                    target.value = target.value.replace(/[^а-я ]/gi, '');
+                }
             });
-        };
-        
-        sendsForm().then(formse());
-        
-        form1.addEventListener('submit', (event) => {
-            statusMessage.textContent = '';
-            event.preventDefault();
-            form1.append(elem1);
-            form1.append(statusMessage);
-            elem1.classList.add('loader');
-            statusMessage.setAttribute('style', 'color: white;');
-            let inputs = form1.querySelectorAll('input');
-            const formData = new FormData(form1);
-            let body = {};
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            postData(body,
-                () => {
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                statusMessage.textContent = '';
+                let inputs = form.querySelectorAll('input');
+                form.appendChild(statusMessage);
+                statusMessage.style.cssText = `font-size: 2rem;
+                color: #fff; `;
+                form.append(elem1);
+                const formData = new FormData(form);
+
+
+                elem1.classList.add('loader');
+                let body = {};
+                for (let val of formData.entries()) {
+                    body[val[0]] = val[1];
+                }
+                const outputData = () => {
+                    form.append(statusMessage);
                     elem1.classList.remove('loader');
                     statusMessage.textContent = successMessage;
                     inputs.forEach(elem => elem.value = '');
-                },
-                (error) => {
+
+                };
+                const errorData = () => {
+                    form.append(statusMessage);
                     elem1.classList.remove('loader');
                     statusMessage.textContent = errorMessage;
                     inputs.forEach(elem => elem.value = '');
-                    console.error(error);
-                }
-            );
+                    console.error();
+                };
+
+
+
+
+                senForm(body)
+                    .then(outputData)
+                    .catch(errorData);
+
+            });
         });
 
-        form2.addEventListener('submit', (event) => {
-            statusMessage.textContent = '';
-            event.preventDefault();
-            form2.append(elem1);
-            elem1.classList.add('loader');
-            let inputs = form2.querySelectorAll('input');
-            const formData = new FormData(form2);
-            let body = {};
-            formData.forEach((val, key) => {
-                body[key] = val;
-            });
-            postData(body,
-                () => {
-                    elem1.classList.remove('loader');
-                    form2.append(statusMessage);
-                    statusMessage.textContent = successMessage;
-                    inputs.forEach(elem => elem.textContent = '');
-                },
-                (error) => {
-                    elem1.classList.remove('loader');
-                    form2.append(statusMessage);
-                    statusMessage.textContent = errorMessage;
-                    inputs.forEach(elem => elem.textContent = '');
-                    console.error(error);
-                }
-            );
-        });
     };
     sendForm();
 
