@@ -410,57 +410,67 @@ window.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        const postData = (body, outputData, errorData) => {
-            const request = new XMLHttpRequest();
-            request.addEventListener('readystatechange', () => {
-                elem1.classList.add('loader');
+        const sendsForm = (body, outputData, errorData) => {
+            return new Promise((resolve, reject) => {
+                const request = new XMLHttpRequest();
+                request.addEventListener('readystatechange', () => {
+                    elem1.classList.add('loader');
 
-                if (request.readyState !== 4) {
-                    return;
-                }
+                    if (request.readyState !== 4) {
+                        return;
+                    }
 
-                if (request.status === 200) {
-                    outputData();
-                } else {
-                    errorData(request.status);
-                }
+                    if (request.status === 200) {
+                        resolve(outputData);
+                    } else {
+                        reject(errorData(request.status));
+                    }
+                });
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify(body));
             });
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
+            
         };
-
-        form.addEventListener('submit', (event) => {
-            statusMessage.textContent = '';
-            event.preventDefault();
-            elem1.classList.add('loader');
-            let inputs = form.querySelectorAll('input');
-            const formData = new FormData(form);
-            let body = {};
-            formData.forEach((val, key) => {
-                body[key] = val;
+        const formse = ()=>{
+            form.addEventListener('submit', (event) => {
+                return new Promise(()=>{
+                    statusMessage.textContent = '';
+                event.preventDefault();
+                elem1.classList.add('loader');
+                let inputs = form.querySelectorAll('input');
+                const formData = new FormData(form);
+                let body = {};
+                formData.forEach((val, key) => {
+                    body[key] = val;
+                });
+    
+                sendsForm(body,
+                    () => {
+    
+                        form.append(statusMessage);
+                        elem1.classList.remove('loader');
+                        statusMessage.textContent = successMessage;
+                        inputs.forEach(elem => elem.value = '');
+    
+                    },
+                    (error) => {
+    
+                        form.append(statusMessage);
+                        elem1.classList.remove('loader');
+                        statusMessage.textContent = errorMessage;
+                        inputs.forEach(elem => elem.value = '');
+                        console.error(error);
+                    }
+                );
+    
+                });
+                
             });
-
-            postData(body,
-                () => {
-
-                    form.append(statusMessage);
-                    elem1.classList.remove('loader');
-                    statusMessage.textContent = successMessage;
-                    inputs.forEach(elem => elem.value = '');
-
-                },
-                (error) => {
-
-                    form.append(statusMessage);
-                    elem1.classList.remove('loader');
-                    statusMessage.textContent = errorMessage;
-                    inputs.forEach(elem => elem.value = '');
-                    console.error(error);
-                }
-            );
-        });
-
+        };
+        
+        sendsForm().then(formse());
+        
         form1.addEventListener('submit', (event) => {
             statusMessage.textContent = '';
             event.preventDefault();
@@ -495,7 +505,7 @@ window.addEventListener('DOMContentLoaded', function () {
             form2.append(elem1);
             elem1.classList.add('loader');
             let inputs = form2.querySelectorAll('input');
-            const formData = new FormData(form1);
+            const formData = new FormData(form2);
             let body = {};
             formData.forEach((val, key) => {
                 body[key] = val;
@@ -505,13 +515,13 @@ window.addEventListener('DOMContentLoaded', function () {
                     elem1.classList.remove('loader');
                     form2.append(statusMessage);
                     statusMessage.textContent = successMessage;
-                    inputs.forEach(elem => elem.value = '');
+                    inputs.forEach(elem => elem.textContent = '');
                 },
                 (error) => {
                     elem1.classList.remove('loader');
                     form2.append(statusMessage);
                     statusMessage.textContent = errorMessage;
-                    inputs.forEach(elem => elem.value = '');
+                    inputs.forEach(elem => elem.textContent = '');
                     console.error(error);
                 }
             );
