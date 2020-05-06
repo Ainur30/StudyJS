@@ -61,8 +61,7 @@ window.addEventListener('DOMContentLoaded', function () {
     countTimer('27 april 2020');
 
     const toggleMenu = () => {
-        const btnMenu = document.querySelector('.col-3'),
-            body = document.querySelector('body'),
+        const body = document.querySelector('body'),
             menu = document.querySelector('menu');
 
         const showMenu = () => {
@@ -105,8 +104,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
     const togglePopUp = () => {
         const popup = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
-            popUpClose = document.querySelector('.popup-close');
+            popupBtn = document.querySelectorAll('.popup-btn');
+           
 
         popup.addEventListener('click', (event) => {
             let target = event.target;
@@ -396,7 +395,17 @@ window.addEventListener('DOMContentLoaded', function () {
         statusMessage.style.cssText = `font-size: 2rem;
         color: #fff; `;
 
-        const senForm = (body) => {
+        const postData = (body) => {
+            return fetch('./server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }, 
+                body: JSON.stringify(body),
+                credentials: 'include'
+            });
+        };
+            /*
             return new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
                 request.addEventListener('readystatechange', () => {
@@ -419,8 +428,8 @@ window.addEventListener('DOMContentLoaded', function () {
                 request.setRequestHeader('Content-Type', 'application/json');
                 request.send(JSON.stringify(body));
             });
-
-        };
+            */
+       
 
 
 
@@ -475,10 +484,13 @@ window.addEventListener('DOMContentLoaded', function () {
                 };
 
 
-
-
-                senForm(body)
-                    .then(outputData)
+                postData(body)
+                    .then((response) => {
+                        if(response.status !== 200){
+                            throw new Error('status network not 200');
+                            outputData();
+                            
+                        }})
                     .catch(errorData);
 
             });
