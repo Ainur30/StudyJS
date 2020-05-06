@@ -105,7 +105,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const togglePopUp = () => {
         const popup = document.querySelector('.popup'),
             popupBtn = document.querySelectorAll('.popup-btn');
-           
+
 
         popup.addEventListener('click', (event) => {
             let target = event.target;
@@ -387,11 +387,11 @@ window.addEventListener('DOMContentLoaded', function () {
             loadMessage = 'Загрузка...',
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
-        
+
         const forms = document.querySelectorAll('form');
         const elem1 = document.getElementById('loader');
         const statusMessage = document.createElement('div');
-       
+
         statusMessage.style.cssText = `font-size: 2rem;
         color: #fff; `;
 
@@ -400,39 +400,12 @@ window.addEventListener('DOMContentLoaded', function () {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-                }, 
+                },
                 body: JSON.stringify(body),
                 credentials: 'include'
             });
         };
-            /*
-            return new Promise((resolve, reject) => {
-                const request = new XMLHttpRequest();
-                request.addEventListener('readystatechange', () => {
-                    elem1.classList.add('loader');
-                    let inputs = document.querySelectorAll('input');
-
-                    if (request.readyState !== 4) {
-                        return;
-                    }
-
-                    if (request.status === 200) {
-                        inputs.forEach(elem => elem.value = '');
-                        resolve();
-                    } else {
-                        inputs.forEach(elem => elem.value = '');
-                        reject(request.status);
-                    }
-                });
-                request.open('POST', './server.php');
-                request.setRequestHeader('Content-Type', 'application/json');
-                request.send(JSON.stringify(body));
-            });
-            */
        
-
-
-
         forms.forEach(form => {
 
             form.addEventListener('input', (event) => {
@@ -458,7 +431,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
                 form.appendChild(statusMessage);
-                
+
                 form.append(elem1);
                 const formData = new FormData(form);
 
@@ -486,16 +459,14 @@ window.addEventListener('DOMContentLoaded', function () {
 
                 postData(body)
                     .then((response) => {
-                        if(response.status !== 200){
+                        if (response.status !== 200) {
                             throw new Error('status network not 200');
-                            outputData();
-                            
-                        }})
+                        }
+                        outputData();
+                    })
                     .catch(errorData);
-
             });
         });
-
     };
     sendForm();
 
