@@ -2,7 +2,7 @@
  //slider
  const slider = () => {
     const slide = document.querySelectorAll('.portfolio-item'),
-        btn = document.querySelectorAll('.portfolio-btn'),
+        
         dotsCont = document.querySelector('.portfolio-dots'),
         slider = document.querySelector('.portfolio-content');
     const dots = () => {
@@ -10,7 +10,7 @@
         for (let i = 0; i < length; i++) {
             let dot = document.createElement('li');
             dot.classList.add('dot');
-            dotsCont.append(dot);
+            dotsCont.appendChild(dot);
         }
     };
     dots();

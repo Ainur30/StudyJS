@@ -25,7 +25,6 @@
         };
        
         forms.forEach(form => {
-
             form.addEventListener('input', (event) => {
                 let target = event.target;
                 if (target.name === 'user_phone') {
@@ -33,8 +32,12 @@
                         target.style.border = 'none';
                     }
                     target.value = target.value.replace(/[^\+\d]/g, '');
-                    if (!/^\+?(\d){0,18}$/g.test(target.value)) {
+                    if (!/^\+?(\d){5,18}$/g.test(target.value)) {
                         target.value = target.value.substring(0, target.value.length - 1);
+                    }
+                    if(target.value.length<11){
+                        target.style = 'border: 2px solid red';
+                        return;
                     }
 
                 }
@@ -43,9 +46,19 @@
                 }
             });
 
-            form.addEventListener('submit', (event) => {
+           
 
+            form.addEventListener('submit', (event) => {
                 event.preventDefault();
+                let target = event.target;
+                if(target.value.length<11){
+                    target.style = 'border: 2px solid red';
+                    return;
+                }
+
+
+                
+                
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
                 form.appendChild(statusMessage);
