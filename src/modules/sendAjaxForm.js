@@ -1,7 +1,8 @@
-    "use strict";
+
     // send-ajax-form
 
     const sendForm = () => {
+        
         const errorMessage = 'Что-то пошло не так...',
             successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
@@ -39,9 +40,9 @@
                         target.style = 'border: 2px solid red';
                         return;
                     }
-
                 }
                 if (target.name === 'user_name' || target.name === 'user_message') {
+                    
                     target.value = target.value.replace(/[^а-я ]/gi, '');
                 }
             });
@@ -50,15 +51,7 @@
 
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                let target = event.target;
-                if(target.value.length<11){
-                    target.style = 'border: 2px solid red';
-                    return;
-                }
-
-
-                
-                
+        55
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
                 form.appendChild(statusMessage);
