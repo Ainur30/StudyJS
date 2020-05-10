@@ -63,8 +63,12 @@
                     return;
                 } else {
                     input[0].style = 'border: none';
+                    
                     let er = document.querySelector('.error');
-                    er.remove();
+                    if(er){
+                        er.textContent = '';
+                    }
+                   
                 }
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
