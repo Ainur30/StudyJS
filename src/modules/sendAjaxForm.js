@@ -27,6 +27,10 @@
         };
 
         const addElem = (el) => {
+            let er = document.querySelector('.error');
+                    if(er){
+                        er.remove();
+                    }
             let elem = el.parentNode;
             console.log(elem);
             let div =  `
