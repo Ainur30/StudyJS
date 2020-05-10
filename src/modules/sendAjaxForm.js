@@ -1,4 +1,4 @@
-
+'use strict';
     // send-ajax-form
 
     const sendForm = () => {
@@ -15,6 +15,7 @@
         color: #fff; `;
 
         const postData = (body) => {
+            
             return fetch('./server.php', {
                 method: 'POST',
                 headers: {
@@ -24,34 +25,47 @@
                 credentials: 'include'
             });
         };
-       
+
+        const addElem = (el) => {
+            let elem = el.parentNode;
+            console.log(elem);
+            let div =  `
+            <div class="error" style="color: red;">
+            Введи минимум 10 цифр
+            </div>
+          `;
+            el.insertAdjacentHTML('afterEnd', div);
+        };
+        
+
         forms.forEach(form => {
             form.addEventListener('input', (event) => {
                 let target = event.target;
                 if (target.name === 'user_phone') {
-                    if (target.style) {
-                        target.style.border = 'none';
-                    }
                     target.value = target.value.replace(/[^\+\d]/g, '');
                     if (!/^\+?(\d){5,18}$/g.test(target.value)) {
                         target.value = target.value.substring(0, target.value.length - 1);
                     }
-                    if(target.value.length<11){
-                        target.style = 'border: 2px solid red';
-                        return;
-                    }
+                   
                 }
                 if (target.name === 'user_name' || target.name === 'user_message') {
-                    
                     target.value = target.value.replace(/[^а-я ]/gi, '');
                 }
             });
-
            
-
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-        55
+                const input = [...event.target.elements].filter((item) => item.name === 'user_phone');
+                let inputLength = input[0].value.replace('+', '').length;
+                if (inputLength < 10) {
+                    input[0].style = 'border: 2px solid red';
+                    addElem(input[0]);
+                    return;
+                } else {
+                    input[0].style = 'border: none';
+                    let er = document.querySelector('.error');
+                    er.remove();
+                }
                 statusMessage.textContent = '';
                 let inputs = form.querySelectorAll('input');
                 form.appendChild(statusMessage);
