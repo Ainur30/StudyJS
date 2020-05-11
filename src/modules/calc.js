@@ -30,21 +30,23 @@
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
+           
             const getTotal = () => {
-                counter += 50;
+                interval = requestAnimationFrame(getTotal);
+                counter += 10;
                 totalValue.textContent = counter;
                 if (counter >= total) {
-                    clearInterval(interval);
+                   cancelAnimationFrame(interval);
                 }
             };
             if (total > 0) {
-                interval = setInterval(getTotal, 1);
+                interval = requestAnimationFrame(getTotal);
             }
         };
         calcBlock.addEventListener('change', (event) => {
             const target = event.target;
             if (target.matches('select') || target.matches('input')) {
-                clearInterval(interval);
+                cancelAnimationFrame(interval);
                 countSum();
             }
         });

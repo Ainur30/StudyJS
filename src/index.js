@@ -20,7 +20,7 @@ import checkInputs from './modules/checkInputs';
 import calc from './modules/calc';
 import sendForm from './modules/sendAjaxForm';
 
-countTimer('10 may 2020');
+countTimer('12 may 2020');
 
 toggleMenu();
 
