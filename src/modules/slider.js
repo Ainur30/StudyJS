@@ -1,4 +1,4 @@
- 
+ 'use strict';
  //slider
  const slider = () => {
     const slide = document.querySelectorAll('.portfolio-item'),

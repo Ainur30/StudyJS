@@ -33,9 +33,10 @@
            
             const getTotal = () => {
                 interval = requestAnimationFrame(getTotal);
-                counter += 10;
+                counter += 50;
                 totalValue.textContent = counter;
                 if (counter >= total) {
+                    totalValue.textContent = Math.ceil(total);
                    cancelAnimationFrame(interval);
                 }
             };

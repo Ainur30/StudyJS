@@ -28,7 +28,7 @@ const sendForm = () => {
 
     const addElem = (el) => {
         let er = document.querySelector('.error');
-        console.log(er);
+
         if (er) {
             er.remove();
         }
@@ -44,17 +44,17 @@ const sendForm = () => {
         form.addEventListener('input', (event) => {
             let target = event.target;
             if (target.name === 'user_phone') {
-              if (target.style) {
-                target.style.border = 'none';
-              }
-              target.value = target.value.replace(/[^\+\d]/g, '');
-              if (!/^\+?(\d){0,18}$/g.test(target.value)) {
-                target.value = target.value.substring(0, target.value.length - 1);
-              }
-    
+                if (target.style) {
+                    target.style.border = 'none';
+                }
+                target.value = target.value.replace(/[^\+\d]/g, '');
+                if (!/^\+?(\d){0,18}$/g.test(target.value)) {
+                    target.value = target.value.substring(0, target.value.length - 1);
+                }
+
             }
             if (target.name === 'user_name' || target.name === 'user_message') {
-              target.value = target.value.replace(/[^а-я ]/gi, '');
+                target.value = target.value.replace(/[^а-я ]/gi, '');
             }
         });
 
