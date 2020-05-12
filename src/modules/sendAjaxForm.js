@@ -62,20 +62,19 @@ const sendForm = () => {
             event.preventDefault();
             const input1 = [...event.target.elements].filter((item) => item.name === 'user_email');
             if(!/^\w+@\w+\.\w{2,}$/gi.test(input1[0].value)){
-                input1[0].style = 'border: 2px solid red';
+                input1[0].setAttribute('style', 'border: 2px solid red');
                 return;
             } else {
-                input1[0].style = 'border: none';
+                input1[0].setAttribute('style', 'border: none');
             }
             const input = [...event.target.elements].filter((item) => item.name === 'user_phone');
             let inputLength = input[0].value.replace('+', '').length;
             if (inputLength < 10) {
-                input[0].style = 'border: 2px solid red';
+                input[0].setAttribute('style', 'border: 2px solid red');
                 addElem(input[0]);
                 return;
             } else {
-
-                input[0].style = 'border: none';
+                input[0].setAttribute('style', 'border: none');
                 let er = document.querySelector('.error');
                 if (er) {
                     er.textContent = '';
@@ -92,14 +91,14 @@ const sendForm = () => {
                 body[val[0]] = val[1];
             }
             const outputData = () => {
-                form.append(statusMessage);
+                form.appendChild(statusMessage);
                 elem1.classList.remove('loader');
                 statusMessage.textContent = successMessage;
                 inputs.forEach(elem => elem.value = '');
 
             };
             const errorData = () => {
-                form.append(statusMessage);
+                form.appendChild(statusMessage);
                 elem1.classList.remove('loader');
                 statusMessage.textContent = errorMessage;
                 inputs.forEach(elem => elem.value = '');
