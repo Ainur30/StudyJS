@@ -53,6 +53,9 @@ const sendForm = () => {
                 }
 
             }
+            if(target.name === 'user_email'){
+                target.value = target.value.replace(/[^a-z0-9\@\. ]/gi, '');
+            }
             if (target.name === 'user_name' || target.name === 'user_message') {
                 target.value = target.value.replace(/[^а-я ]/gi, '');
             }

@@ -13,7 +13,7 @@
         const countSum = () => {
             let total = 0,
                 countValue = 1,
-                counter = 0,
+                counter = 1,
                 dayValue = 1;
             const typeValue = calcType.options[calcType.selectedIndex].value,
                 squareValue = +calcSquare.value;
@@ -33,7 +33,7 @@
            
             const getTotal = () => {
                 interval = requestAnimationFrame(getTotal);
-                counter += 50;
+                counter += 200;
                 totalValue.textContent = counter;
                 if (counter >= total) {
                     totalValue.textContent = Math.ceil(total);

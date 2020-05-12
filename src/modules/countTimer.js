@@ -27,23 +27,29 @@
         timeHours.textContent = timer.hours;
         timeMinutes.textContent = timer.minutes;
         timeSeconds.textContent = timer.seconds;
+        const timerCorrector = () => {
 
-        if (timer.hours < 10) {
-            timeHours.textContent = `0${timer.hours}`;
+            if (timer.hours < 10) {
+                timeHours.textContent = `0${timer.hours}`;
+    
+            }
+            if (timer.minutes < 10) {
+                timeMinutes.textContent = `0${timer.minutes}`;
+    
+            }
+            if (timer.seconds < 10) {
+                timeSeconds.textContent = `0${timer.seconds}`;
+    
+            }
+    
+            if (timer.timeRemaining > 0) {
+                setInterval(upDateClock, 1000);
+            }
 
-        }
-        if (timer.minutes < 10) {
-            timeMinutes.textContent = `0${timer.minutes}`;
+        };
+        timerCorrector();
 
-        }
-        if (timer.seconds < 10) {
-            timeSeconds.textContent = `0${timer.seconds}`;
-
-        }
-
-        if (timer.timeRemaining > 0) {
-            setInterval(upDateClock, 1000);
-        }
+        
 
     };
     upDateClock();

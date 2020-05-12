@@ -1,16 +1,13 @@
    "use strict";
    //check inputs
    const checkInputs = () => {
-    const calcItems = document.querySelectorAll('.calc-item');
+    const calc = document.getElementById('calc');
 
-    calcItems.forEach((elem) => {
-        elem.addEventListener('keydown', (event) => {
-            let target = event.target;
-            if (event.keyCode === 69 || event.keyCode > 100) {
-                event.preventDefault();
-            }
-        });
-
+    calc.addEventListener('input', (event) => {
+        let target = event.target;
+        if (target.tagName === 'INPUT'){
+            target.value = target.value.replace(/\D/g, '');
+        }
     });
 
 };
