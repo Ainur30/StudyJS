@@ -36,7 +36,7 @@
                 counter += 200;
                 totalValue.textContent = counter;
                 if (counter >= total) {
-                    totalValue.textContent = Math.ceil(total);
+                    totalValue.textContent = Math.floor(total);
                    cancelAnimationFrame(interval);
                 }
             };

@@ -1,6 +1,4 @@
 
- 
-
 import '@babel/polyfill';
 import 'formdata-polyfill';
 import 'nodelist-foreach-polyfill';

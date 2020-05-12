@@ -15,7 +15,16 @@
         return { timeRemaining, seconds, minutes, hours };
 
     };
-
+    const timerCorrector = () => {
+        let div = document.getElementById('timer');
+        let elems = div.querySelectorAll('span');
+        elems.forEach((elem)=>{
+            if(Number(elem.textContent) < 10) {
+                elem.textContent = `0${elem.textContent}`;
+            }
+        });
+        
+    };
     const upDateClock = () => {
         let timer = getTimeRemaining();
         if (timer.hours < 0 && timer.minutes < 0 && timer.seconds < 0) {
@@ -23,34 +32,13 @@
             timer.minutes = 0;
             timer.seconds = 0;
         }
-
         timeHours.textContent = timer.hours;
         timeMinutes.textContent = timer.minutes;
         timeSeconds.textContent = timer.seconds;
-        const timerCorrector = () => {
-
-            if (timer.hours < 10) {
-                timeHours.textContent = `0${timer.hours}`;
-    
-            }
-            if (timer.minutes < 10) {
-                timeMinutes.textContent = `0${timer.minutes}`;
-    
-            }
-            if (timer.seconds < 10) {
-                timeSeconds.textContent = `0${timer.seconds}`;
-    
-            }
-    
-            if (timer.timeRemaining > 0) {
-                setInterval(upDateClock, 1000);
-            }
-
-        };
         timerCorrector();
-
-        
-
+        if (timer.timeRemaining > 0) {
+            setInterval(upDateClock, 1000);
+        }
     };
     upDateClock();
 

@@ -25,16 +25,15 @@ const sendForm = () => {
             credentials: 'include'
         });
     };
-
+  
     const addElem = (el) => {
         let er = document.querySelector('.error');
 
         if (er) {
             er.remove();
         }
-        let div = `
-            <div class="error" style="color: red;">
-            Введи минимум 10 цифр
+        let div = `<div class="error" style="color: red;">
+                Введи минимум 10 цифр
             </div>`;
         el.insertAdjacentHTML('afterEnd', div);
     };
@@ -53,9 +52,7 @@ const sendForm = () => {
                 }
 
             }
-            if(target.name === 'user_email'){
-                target.value = target.value.replace(/[^a-z0-9\@\. ]/gi, '');
-            }
+           
             if (target.name === 'user_name' || target.name === 'user_message') {
                 target.value = target.value.replace(/[^а-я ]/gi, '');
             }
@@ -63,6 +60,13 @@ const sendForm = () => {
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+            const input1 = [...event.target.elements].filter((item) => item.name === 'user_email');
+            if(!/^\w+@\w+\.\w{2,}$/gi.test(input1[0].value)){
+                input1[0].style = 'border: 2px solid red';
+                return;
+            } else {
+                input1[0].style = 'border: none';
+            }
             const input = [...event.target.elements].filter((item) => item.name === 'user_phone');
             let inputLength = input[0].value.replace('+', '').length;
             if (inputLength < 10) {
@@ -80,9 +84,8 @@ const sendForm = () => {
             statusMessage.textContent = '';
             let inputs = form.querySelectorAll('input');
             form.appendChild(statusMessage);
-            form.append(elem1);
+            form.appendChild(elem1);
             const formData = new FormData(form);
-
             elem1.classList.add('loader');
             let body = {};
             for (let val of formData.entries()) {
@@ -102,8 +105,6 @@ const sendForm = () => {
                 inputs.forEach(elem => elem.value = '');
                 console.error();
             };
-
-
             postData(body)
                 .then((response) => {
                     if (response.status !== 200) {
