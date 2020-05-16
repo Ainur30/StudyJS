@@ -3,7 +3,6 @@
 const slider = () => {
     const slider = document.querySelector('.main-slider'),
         slide = slider.querySelectorAll('.slide');
-        console.log(slide);
 
     const prevSlide = (elem, index) => {
         elem[index].style.display = 'none';
