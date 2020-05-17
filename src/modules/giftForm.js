@@ -1,6 +1,14 @@
 'use strict';
 
 const giftForm = () => {
+    /*
+    const thanks = document.getElementById('thanks'),
+        formContent = thanks.querySelector('.form-content');
+    thanks.style.display = 'block';
+    formContent.innerHTML = `<h4>Ошибка!</h4>
+    <p>Ваша заявка не отправлена. <br> Попробуйте еще раз.</p>
+    <button class="btn close-btn">OK</button>`;
+    */
     try {
         const fixedGift = document.querySelector('.fixed-gift');
         const gift = document.getElementById('gift');
@@ -28,4 +36,4 @@ const giftForm = () => {
     }
 };
 
-export default giftForm();
+export default giftForm;
