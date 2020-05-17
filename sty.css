@@ -1,0 +1,47 @@
+.load {
+    display: none;
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    left: 0;
+    top: 20vh;
+    right: 0;
+    overflow: auto;
+    border: 5px solid black;
+    border-radius: 5%;
+    background: #181728;
+    margin: 0 auto;
+    z-index: 2000;
+}
+
+.loader {
+    position: relative;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    border: 5px solid white;
+    border-radius: 50%;
+    border-top-color: blue;
+    left: 0;
+    top: 20vh;
+    right: 0;
+    animation: 1s spin infinite linear; 
+    
+}
+.load p {
+    margin: 0 auto !important;
+    text-align: center;
+    margin-top: 65% !important;
+    font-size: 25px !important;
+    color: white;
+}
+
+
+@keyframes spin {
+from {
+   transform:rotate(0deg);
+}
+to {
+   transform:rotate(360deg);
+}
+}
