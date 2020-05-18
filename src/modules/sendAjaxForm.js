@@ -18,7 +18,7 @@ const sendAjaxForm = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body),
-            mode: 'cors'
+            credentials: 'include'
         });
     };
     const addElem1 = (el) => {
@@ -60,20 +60,24 @@ const sendAjaxForm = () => {
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            const input2 = [...event.target.elements].filter((item) => item.type === 'radio');
-            if (input2.length > 1) {
-                if (input2[0].checked === false && input2[1].checked === false) {
-                    addElem(input2[0]);
-                    addElem(input2[1]);
-                    return;
-                } else {
-                    let er = document.querySelector('.error');
-                    if (er) {
-                        er.remove();
-                    }
+            if (event.target.id !== "card_order") {
+                const input2 = [...event.target.elements].filter((item) => item.type === 'radio');
+                if (input2.length > 1) {
+                    if (input2[0].checked === false && input2[1].checked === false) {
+                        addElem(input2[0]);
+                        addElem(input2[1]);
+                        return;
+                    } else {
+                        let er = document.querySelector('.error');
+                        if (er) {
+                            er.remove();
+                        }
 
+                    }
                 }
+
             }
+
             const input1 = [...event.target.elements].filter((item) => item.type === 'checkbox');
             if (input1.length >= 1) {
                 if (input1[0].checked === false) {
@@ -117,8 +121,8 @@ const sendAjaxForm = () => {
                 <p>Ваша заявка отправлена. <br> Мы свяжемся с вами в ближайшее время.</p>
                 <button class="btn close-btn">OK</button>`;
                 inputs.forEach(elem => {
-                    elem.value = '';
-                    if (elem.id === 'card_leto_mozaika' || elem.id === 'm1') {
+                    elem.textContent = '';
+                    if (elem.id === 'card_leto_mozaika' || elem.id === 'm3') {
                         elem.checked = true;
                         priceTotal.textContent = '1999';
                     } else {
@@ -156,7 +160,6 @@ const sendAjaxForm = () => {
                     <p>Ваша заявка не отправлена. <br> Попробуйте еще раз</p>
                     <button class="btn close-btn">OK</button>`;
                 inputs.forEach(elem => {
-                    elem.value = '';
                     if (elem.id === 'card_leto_mozaika' || elem.id === 'm1') {
                         elem.checked = true;
                         priceTotal.textContent = '1999';
@@ -167,6 +170,7 @@ const sendAjaxForm = () => {
                     }
                 });
 
+
                 thanks.addEventListener('click', (event) => {
                     let target = event.target;
                     if (target.classList.contains('close_icon') || target.classList.contains('close-btn')) {
@@ -175,6 +179,7 @@ const sendAjaxForm = () => {
                         popups.forEach((elem) => {
                             elem.style.display = 'none';
                         });
+
                     } else {
                         target = target.closest('.popup-content');
                         if (!target) {
@@ -184,7 +189,9 @@ const sendAjaxForm = () => {
                                 elem.style.display = 'none';
                             });
                         }
+
                     }
+
                 });
             };
             postData(body)
