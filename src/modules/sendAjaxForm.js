@@ -5,6 +5,7 @@ const sendAjaxForm = () => {
         loader = document.querySelector('.load'),
         thanks = document.getElementById('thanks'),
         bannerForm = document.getElementById('banner-form'),
+        priceTotal = document.getElementById('price-total'),
         formContent = thanks.querySelector('.form-content'),
         errorMessage = 'Что-то пошло не так...',
         successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
@@ -17,32 +18,28 @@ const sendAjaxForm = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(body),
-            credentials: 'include',
             mode: 'cors'
         });
     };
-    forms.forEach(form => {
-        if (form.id !== 'footer_form') {
-            let button = form.querySelector('button');
-            let input = form.querySelectorAll('input');
-            button.addEventListener('mouseover', () => {
-                input.forEach((elem) => {
-                    if (elem.type === 'checkbox') {
-                        if (elem.checked === false) {
-                            addElem(elem);
-                        }
-                    }
-                });
-            });
-            button.addEventListener('mouseout', () => {
-                let er = document.querySelector('.error');
-
-                if (er) {
-                    er.remove();
-                }
-
-            });
+    const addElem1 = (el) => {
+        let er = document.querySelector('.error1');
+        if (er) {
+            er.remove();
         }
+        let div = `<p class="error1" style="color: red;">Введите минимум 11 цифр!</p>`;
+        el.parentNode.insertAdjacentHTML('afterend', div);
+    };
+    const addElem = (el) => {
+        let er = document.querySelector('.error');
+        if (er) {
+            er.remove();
+        }
+        let div = `<p class="error" style="color: red;">Обязательное поле!</p>`;
+        el.parentNode.insertAdjacentHTML('beforeend', div);
+    };
+    forms.forEach(form => {
+        let button = form.querySelector('button');
+
         form.addEventListener('input', (event) => {
             let target = event.target;
             if (target.name === 'phone') {
@@ -60,31 +57,38 @@ const sendAjaxForm = () => {
                 target.value = target.value.replace(/[^а-я ]/gi, '');
             }
         });
-        const addElem1 = (el) => {
-            let er = document.querySelector('.error1');
-            if (er) {
-                er.remove();
-            }
-            let div = `<p class="error1" style="color: red;">Введите минимум 11 цифр!</p>`;
-            el.parentNode.insertAdjacentHTML('afterend', div);
-        };
-        const addElem = (el) => {
-            let er = document.querySelector('.error');
 
-            if (er) {
-                er.remove();
-            }
-            let div = `<p class="error" style="color: red;">Обязательное поле!</p>`;
-            el.parentNode.insertAdjacentHTML('beforeend', div);
-        };
         form.addEventListener('submit', (event) => {
             event.preventDefault();
-            let inputs = form.querySelectorAll('input');
-            const input1 = [...event.target.elements].filter((item) => item.type === 'checkbox');
-            console.log(input1[0].checked === false);
-            if (input1[0].checked === false) {
-                return;
+            const input2 = [...event.target.elements].filter((item) => item.type === 'radio');
+            if (input2.length > 1) {
+                if (input2[0].checked === false && input2[1].checked === false) {
+                    addElem(input2[0]);
+                    addElem(input2[1]);
+                    return;
+                } else {
+                    let er = document.querySelector('.error');
+                    if (er) {
+                        er.remove();
+                    }
+
+                }
             }
+            const input1 = [...event.target.elements].filter((item) => item.type === 'checkbox');
+            if (input1.length >= 1) {
+                if (input1[0].checked === false) {
+                    addElem(input1[0]);
+                    return;
+                } else {
+                    let er = document.querySelector('.error');
+                    if (er) {
+                        er.remove();
+                    }
+                }
+
+            }
+
+            let inputs = form.querySelectorAll('input');
             const input = [...event.target.elements].filter((item) => item.name === 'phone');
             let inputLength = input[0].value.replace('+', '').length;
             if (inputLength < 11) {
@@ -95,7 +99,7 @@ const sendAjaxForm = () => {
                 return;
             } else {
                 input[0].setAttribute('style', 'border: none');
-                let er = document.querySelector('.error');
+                let er = document.querySelector('.error1');
                 if (er) {
                     er.textContent = '';
                 }
@@ -114,8 +118,13 @@ const sendAjaxForm = () => {
                 <button class="btn close-btn">OK</button>`;
                 inputs.forEach(elem => {
                     elem.value = '';
-                    if (elem.checked) {
-                        elem.checked = false;
+                    if (elem.id === 'card_leto_mozaika' || elem.id === 'm1') {
+                        elem.checked = true;
+                        priceTotal.textContent = '1999';
+                    } else {
+                        if (elem.checked) {
+                            elem.checked = false;
+                        }
                     }
                 }
                 );
@@ -124,10 +133,18 @@ const sendAjaxForm = () => {
                     let target = event.target;
                     if (target.classList.contains('close_icon') || target.classList.contains('close-btn')) {
                         thanks.style.display = 'none';
+                        let popups = document.querySelectorAll('.popup');
+                        popups.forEach((elem) => {
+                            elem.style.display = 'none';
+                        });
                     } else {
                         target = target.closest('.popup-content');
                         if (!target) {
                             thanks.style.display = 'none';
+                            let popups = document.querySelectorAll('.popup');
+                            popups.forEach((elem) => {
+                                elem.style.display = 'none';
+                            });
                         }
                     }
                 });
@@ -140,20 +157,32 @@ const sendAjaxForm = () => {
                     <button class="btn close-btn">OK</button>`;
                 inputs.forEach(elem => {
                     elem.value = '';
-                    if (elem.checked) {
-                        elem.checked = false;
+                    if (elem.id === 'card_leto_mozaika' || elem.id === 'm1') {
+                        elem.checked = true;
+                        priceTotal.textContent = '1999';
+                    } else {
+                        if (elem.checked) {
+                            elem.checked = false;
+                        }
                     }
-                }
-                );
+                });
 
                 thanks.addEventListener('click', (event) => {
                     let target = event.target;
                     if (target.classList.contains('close_icon') || target.classList.contains('close-btn')) {
                         thanks.style.display = 'none';
+                        let popups = document.querySelectorAll('.popup');
+                        popups.forEach((elem) => {
+                            elem.style.display = 'none';
+                        });
                     } else {
                         target = target.closest('.popup-content');
                         if (!target) {
                             thanks.style.display = 'none';
+                            let popups = document.querySelectorAll('.popup');
+                            popups.forEach((elem) => {
+                                elem.style.display = 'none';
+                            });
                         }
                     }
                 });
