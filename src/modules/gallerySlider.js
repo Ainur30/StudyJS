@@ -2,9 +2,14 @@
 
 const gallerySlider = () =>{
     const slide = document.querySelectorAll('.photo-item'),
+        dotsCont = document.querySelectorAll,
         container = document.querySelector('.contain');
 
 
+       
+        let dot = document.querySelectorAll('.dot');
+        dot[0].classList.add('active');
+    
         const prevSlide = (elem, index, strClass) => {
             elem[index].classList.remove(strClass);
         };
@@ -13,39 +18,7 @@ const gallerySlider = () =>{
         };
         let currentSlide = 0,
             interval;
-    
-        const autoPlaySlide = () => {
-            prevSlide(slide, currentSlide, 'item-active');
-            
-            currentSlide++;
-            if (currentSlide >= slide.length) {
-                currentSlide = 0;
-            }
-            nextSlide(slide, currentSlide, 'item-active');
-           
-        };
-    
-        const startSlide = (time = 3000) => {
-            interval = setInterval(autoPlaySlide, time);
-    
-        };
-    
-        const stopSlide = () => {
-            clearInterval(interval);
-        };
-        container.addEventListener('mouseover', (event) => {
-            if (event.target.matches('.port') || event.target.matches('.dot')) {
-                stopSlide();
-            }
-    
-        });
-        container.addEventListener('mouseout', (event) => {
-            if (event.target.matches('.port') || event.target.matches('.dot')) {
-                startSlide(1000);
-            }
-    
-        });
-    
+
         container.addEventListener('click', (event) => {
             event.preventDefault();
             let target = event.target;
@@ -54,13 +27,19 @@ const gallerySlider = () =>{
                 return;
             }
             prevSlide(slide, currentSlide, 'item-active');
-           
+            prevSlide(dot, currentSlide, 'active');
     
             if (target.matches('#arrow-right')) {
                 currentSlide++;
             } else if (target.matches('#arrow-left')) {
                 currentSlide--;
-            } 
+            } else if (target.matches('.dot')) {
+                dot.forEach((elem, index) => {
+                    if (target === elem) {
+                        currentSlide = index;
+                    }
+                });
+            }
             if (currentSlide >= slide.length) {
                 currentSlide = 0;
             }
@@ -68,9 +47,7 @@ const gallerySlider = () =>{
                 currentSlide = slide.length - 1;
             }
             nextSlide(slide, currentSlide, 'item-active');
-            
+            nextSlide(dot, currentSlide, 'active');
         });
-    
-        startSlide(10000);
     };
 export default gallerySlider;

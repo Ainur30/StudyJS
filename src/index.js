@@ -16,6 +16,6 @@ freeVisitForm();
 callbackForm();
 slider();
 giftForm();
-scrolling();
 sendAjaxForm();
 gallerySlider();
+scrolling();

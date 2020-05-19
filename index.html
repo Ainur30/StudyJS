@@ -22,13 +22,13 @@
             overflow: hidden;
         }
 
-        
-        
+
+
         .photo-item {
             position: absolute;
             top: 50%;
             left: 50%;
-            
+
             transform: translate(-50%, -50%);
             width: 100%;
             opacity: 0;
@@ -59,13 +59,13 @@
 
         .port.prev {
             left: 10%;
-            background-image: url(../images/icons/left-arrow.svg) ;
+            background-image: url(../images/icons/left-arrow.svg);
             background-position: 25% 50%;
         }
 
         .port.next {
             right: 10%;
-            background-image: url(../images/icons/right-arrow.svg) ;
+            background-image: url(../images/icons/right-arrow.svg);
             background-position: 75% 50%;
 
         }
@@ -76,7 +76,40 @@
             transition: opacity .5s;
 
         }
-        
+
+        #services {
+            margin-bottom: 100px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 20px;
+            border: 2px solid orange;
+            cursor: pointer;
+            margin: 0 10px;;
+            display: inline-block;
+            -webkit-transition: background-color, -webkit-transform .4s;
+            transition: background-color, transform .4s, -webkit-transform .4s;
+        }
+
+        .active {
+            background-color: orange;
+
+        }
+
+        .dot-content {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            margin: 20px auto 0;
+
+            display: flex;
+            -webkit-box-pack: center;
+
+            justify-content: center;
+            justify-items: flex-start;
+            z-index: 5;
+        }
     </style>
 </head>
 
@@ -146,7 +179,7 @@
                 <li class="scroll"><a href="#clubs">Клубы</a></li>
                 <li class="scroll"><a href="#services">Услуги</a></li>
                 <li class="scroll"><a href="#cards">Клубные карты</a></li>
-                <li class="scroll"><a href="#gallery">Галерея</a></li>
+                <li class="scroll"><a href="#banner1">Галерея</a></li>
                 <li class="scroll"><a href="#footer">Контакты</a></li>
             </ul>
         </nav>
@@ -351,8 +384,8 @@
             </div>
         </div>
     </section>
+    <h2>Фотогалерея</h2>
     <div id="banner1">
-        <h2>Фотогалерея</h2>
         <div class="form-wrapper">
             <ul class="contain">
                 <li class="photo-item item-active"><img src="images/gallery/photo1.jpg" alt=""></li>
@@ -362,6 +395,13 @@
                 <li class="photo-item"><img src="images/gallery/photo5.jpg" alt=""></li>
                 <a href="#" class="port prev" id="arrow-left"></a>
                 <a href="#" class="port next" id="arrow-right"></a>
+                <ul class="dot-content">
+                    <li class="dot active"></li>
+                    <li class="dot "></li>
+                    <li class="dot "></li>
+                    <li class="dot "></li>
+                    <li class="dot "></li>
+                </ul>
             </ul>
         </div>
     </div>
