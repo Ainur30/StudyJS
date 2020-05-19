@@ -10,6 +10,74 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="stylesheet" href="sty.css">
+
+    <style>
+        #banner1 {
+            margin-top: 30px;
+            background: url(../images/banner-bg.png) no-repeat center center;
+            height: 400px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 50px;
+            overflow: hidden;
+        }
+
+        
+        
+        .photo-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            
+            transform: translate(-50%, -50%);
+            width: 100%;
+            opacity: 0;
+            -webkit-transition: opacity .5s;
+            transition: opacity .5s;
+        }
+
+        .contain {
+            position: relative;
+            height: 400px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .port {
+            position: absolute;
+            cursor: pointer;
+            top: 50%;
+            z-index: 5;
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            background-repeat: no-repeat;
+            background-size: 34px;
+            border-radius: 50%;
+            transition: background-color .2s;
+        }
+
+        .port.prev {
+            left: 10%;
+            background-image: url(../images/icons/left-arrow.svg) ;
+            background-position: 25% 50%;
+        }
+
+        .port.next {
+            right: 10%;
+            background-image: url(../images/icons/right-arrow.svg) ;
+            background-position: 75% 50%;
+
+        }
+
+        .item-active {
+            opacity: 1;
+            -webkit-transition: opacity .5s;
+            transition: opacity .5s;
+
+        }
+        
+    </style>
 </head>
 
 <body>
@@ -283,22 +351,26 @@
             </div>
         </div>
     </section>
+    <div id="banner1">
+        <h2>Фотогалерея</h2>
+        <div class="form-wrapper">
+            <ul class="contain">
+                <li class="photo-item item-active"><img src="images/gallery/photo1.jpg" alt=""></li>
+                <li class="photo-item"> <img src="images/gallery/photo2.jpg" alt=""></li>
+                <li class="photo-item"> <img src="images/gallery/photo3.jpg" alt=""></li>
+                <li class="photo-item"><img src="images/gallery/photo4.jpg" alt=""></li>
+                <li class="photo-item"><img src="images/gallery/photo5.jpg" alt=""></li>
+                <a href="#" class="port prev" id="arrow-left"></a>
+                <a href="#" class="port next" id="arrow-right"></a>
+            </ul>
+        </div>
+    </div>
+    <!--
     <section id="gallery">
         <h2>Фотогалерея</h2>
         <div class="gallery-bg">
             <div class="wrapper">
                 <div class="gallery-slider">
-                    <!--
-                    <ul>
-                        <li class="photo-item" style="opacity: 1;"><img src="images/gallery/photo1.jpg" alt="">
-                        </li>
-                        <li class="photo-item" style="opacity: 0;"> <img src="images/gallery/photo2.jpg" alt=""></li>
-                        <li class="photo-item" style="opacity: 0;"> <img src="images/gallery/photo3.jpg" alt=""></li>
-                        <li class="photo-item" style="opacity: 0;"><img src="images/gallery/photo4.jpg" alt=""></li>
-                        <li class="photo-item" style="opacity: 0;"><img src="images/gallery/photo5.jpg" alt=""></li>
-                    </ul>
-                    -->
-
                     <div class="slide">
                         <img src="images/gallery/photo1.jpg" alt="">
                     </div>
@@ -320,6 +392,7 @@
 
         </div>
     </section>
+-->
     <section id="cards">
         <div class="wrapper">
             <h2>Клубные карты</h2>

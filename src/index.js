@@ -7,6 +7,7 @@ import giftForm from './modules/giftForm';
 import calc from './modules/calc';
 import scrolling from './modules/scrolling';
 import sendAjaxForm from './modules/sendAjaxForm';
+import gallerySlider from './modules/gallerySlider';
 
 
 dropDownMenu();
@@ -17,3 +18,4 @@ slider();
 giftForm();
 scrolling();
 sendAjaxForm();
+gallerySlider();
