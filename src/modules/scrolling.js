@@ -25,10 +25,11 @@ const scrolling = () => {
                 popupMenu.addEventListener('click', (event) => {
                     let target = event.target;
                     if (target.tagName === 'A' && target.tagName !== 'IMG') {
-                        event.preventDefault();
-                        if (event.target === null) {
-                            return;
+                        if (target.textContent === 'Клубы') {
+                            popupMenu.style.display = 'none';
+
                         } else {
+                            event.preventDefault();
                             sliding(target);
                             popupMenu.style.display = 'none';
                         }
@@ -79,14 +80,14 @@ const scrolling = () => {
                     popupMenu.addEventListener('click', (event) => {
                         let target = event.target;
                         if (target.tagName === 'A' && target.tagName !== 'IMG') {
-                            event.preventDefault();
-                            if (target === null) {
-                                return;
+                            if (target.textContent === 'Клубы') {
+                                popupMenu.style.display = 'none';
+    
                             } else {
+                                event.preventDefault();
                                 sliding(target);
                                 popupMenu.style.display = 'none';
                             }
-
                         }
                         if (target.tagName === 'IMG') {
                             popupMenu.style.display = 'none';
