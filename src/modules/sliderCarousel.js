@@ -8,7 +8,7 @@ const sliderCarousel = () => {
         slider = services.querySelector('.services-slider').children;
     let position = 0;
     for(let el of slider){
-        el.style.flex = '0 0 20%';
+        el.setAttribute('style', 'flex:0 0 20%; margin:0 auto !important;');
     }
     const prevSlider = ()=>{
         if(position > 0){
@@ -21,7 +21,6 @@ const sliderCarousel = () => {
             ++position;
             sliders.style.transform = `translateX(-${position*20}%)`;
         }
-        
     };
     next.addEventListener('click', nextSlider);
     prev.addEventListener('click', prevSlider);

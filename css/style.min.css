@@ -1534,14 +1534,17 @@ nav.popup-menu .close-menu-btn img {
     padding: 5px 5px 5px 18px;
     margin-right: 5px
 }
+#services .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .services-slider {
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
-    padding-left: 15px;
-    padding-right: 15px;
-    
+    transition: transform 0.5s;
+    will-change: transform;
 }
 
 .services-slider .slide {
@@ -1574,8 +1577,7 @@ nav.popup-menu .close-menu-btn img {
 }
 
 .slider-arrow {
-    
-    top: 50%;
+    top:200px;
     margin-top: -18px;
     z-index: 100;
     cursor: pointer
@@ -1592,12 +1594,12 @@ nav.popup-menu .close-menu-btn img {
 
 .slider-arrow.prev {
     position: absolute;
-    left: 20px
+    left: 85px
 }
 
 .slider-arrow.next {
     position: absolute;
-    right: 10px
+    right: 85px
 
 }
 
