@@ -3,14 +3,13 @@
 const calc = () => {
     try {
         const cardOrder = document.getElementById('card_order'),
-            time = cardOrder.querySelector('.time'),
             cardLetoMozaika = document.getElementById('card_leto_mozaika'),
             priceTotal = document.getElementById('price-total'),
             price = document.querySelector('.price'),
             promo = price.querySelector('input'),
             inputs = cardOrder.querySelectorAll('input');
         priceTotal.textContent = '1999';
-        promo.addEventListener('change', () => {
+        promo.addEventListener('input', () => {
             if (promo.value === 'ТЕЛО2019') {
                 let val = Number(priceTotal.textContent);
                 priceTotal.textContent = Math.floor(val - val * 0.3);
@@ -21,7 +20,6 @@ const calc = () => {
             if (target.value === 'mozaika') {
                 let elems = [...inputs].filter((item) => item.name === 'card-type');
                 elems.forEach((elem) => {
-                    console.log(elem.checked === true);
                     if (elem.checked === true) {
                         if (elem.value === '1') {
                             if (promo.value === 'ТЕЛО2019') {
@@ -30,7 +28,6 @@ const calc = () => {
                             } else {
                                 priceTotal.textContent = '1999';
                             }
-
                         }
                         if (elem.value === '6') {
                             if (promo.value === 'ТЕЛО2019') {
@@ -59,9 +56,6 @@ const calc = () => {
                             }
 
                         }
-
-
-
                     }
                 });
             }

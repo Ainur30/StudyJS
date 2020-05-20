@@ -5,11 +5,9 @@ const scrolling = () => {
         let header = document.querySelector('header'),
             topMenu = header.querySelector('nav'),
             mozaika = document.getElementById('mozaika'),
-            schelkovo = document.getElementById('schelkovo'),
             btnMenu = topMenu.querySelector('.menu-button'),
             img = btnMenu.querySelector('img'),
             popupMenu = header.querySelector('.popup-menu'),
-            img1 = popupMenu.querySelector('img'),
             arrow = document.getElementById('totop');
         arrow.style.display = 'none';
         const sliding = (elem) => {
@@ -56,12 +54,10 @@ const scrolling = () => {
         try {
             let header = document.querySelector('header'),
                 topMenu = header.querySelector('nav'),
-                mozaika = document.getElementById('mozaika'),
                 schelkovo = document.getElementById('schelkovo'),
                 btnMenu = topMenu.querySelector('.menu-button'),
                 img = btnMenu.querySelector('img'),
                 popupMenu = header.querySelector('.popup-menu'),
-                img1 = popupMenu.querySelector('img'),
                 arrow = document.getElementById('totop');
             arrow.style.display = 'none';
             const sliding = (elem) => {
@@ -109,12 +105,9 @@ const scrolling = () => {
             try {
                 let header = document.querySelector('header'),
                     topMenu = header.querySelector('nav'),
-                    mozaika = document.getElementById('mozaika'),
-                    schelkovo = document.getElementById('schelkovo'),
                     btnMenu = topMenu.querySelector('.menu-button'),
                     img = btnMenu.querySelector('img'),
                     popupMenu = header.querySelector('.popup-menu'),
-                    img1 = popupMenu.querySelector('img'),
                     arrow = document.getElementById('totop');
                 arrow.style.display = 'none';
                 const sliding = (elem) => {
@@ -135,11 +128,9 @@ const scrolling = () => {
                                 event.preventDefault();
                                 sliding(target);
                                 popupMenu.style.display = 'none';
-
                             }
                             if (target.tagName === 'IMG') {
                                 popupMenu.style.display = 'none';
-
                             }
                         });
                     });
@@ -157,7 +148,7 @@ const scrolling = () => {
 
                     }
                 });
-            } catch { }
+            } catch {}
         }
     }
 };

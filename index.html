@@ -86,7 +86,8 @@
             width: 20px;
             border: 2px solid orange;
             cursor: pointer;
-            margin: 0 10px;;
+            margin: 0 10px;
+            ;
             display: inline-block;
             -webkit-transition: background-color, -webkit-transform .4s;
             transition: background-color, transform .4s, -webkit-transform .4s;
@@ -110,6 +111,22 @@
             justify-items: flex-start;
             z-index: 5;
         }
+        .btn-slide {
+            position: absolute;
+            cursor: pointer;
+            top: 50%;
+            z-index: 5;
+            width: 50px;
+            height: 50px;
+            right: 30%;
+            left:30%;
+            background-color: orange;
+            background-repeat: no-repeat;
+            background-size: 34px;
+            border-radius: 50%;
+            transition: background-color .2s;
+        }
+       
     </style>
 </head>
 
@@ -327,8 +344,8 @@
             </div>
         </div>
     </section>
-    <section id="services">
-        <div class="wrapper">
+    <section id="services" style="position:relative;">
+        <div class="wrapper" style="overflow: hidden;">
             <h2>услуги наших клубов</h2>
             <div class="services-slider">
                 <div class="slide">
@@ -383,6 +400,8 @@
                 </div>
             </div>
         </div>
+        <a class="slider-arrow prev"><span><img src="images/arrow-left.png"></span></a>
+        <a class="slider-arrow next"><span><img src="images/arrow-right.png"></span></a>
     </section>
     <h2>Фотогалерея</h2>
     <div id="banner1">
@@ -405,34 +424,6 @@
             </ul>
         </div>
     </div>
-    <!--
-    <section id="gallery">
-        <h2>Фотогалерея</h2>
-        <div class="gallery-bg">
-            <div class="wrapper">
-                <div class="gallery-slider">
-                    <div class="slide">
-                        <img src="images/gallery/photo1.jpg" alt="">
-                    </div>
-                    <div class="slide">
-                        <img src="images/gallery/photo2.jpg" alt="">
-                    </div>
-                    <div class="slide">
-                        <img src="images/gallery/photo3.jpg" alt="">
-                    </div>
-                    <div class="slide">
-                        <img src="images/gallery/photo4.jpg" alt="">
-                    </div>
-                    <div class="slide">
-                        <img src="images/gallery/photo5.jpg" alt="">
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
--->
     <section id="cards">
         <div class="wrapper">
             <h2>Клубные карты</h2>
