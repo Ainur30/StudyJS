@@ -26,8 +26,12 @@ const scrolling = () => {
                     let target = event.target;
                     if (target.tagName === 'A' && target.tagName !== 'IMG') {
                         event.preventDefault();
-                        sliding(target);
-                        popupMenu.style.display = 'none';
+                        if (event.target === null) {
+                            return;
+                        } else {
+                            sliding(target);
+                            popupMenu.style.display = 'none';
+                        }
 
                     }
                     if (target.tagName === 'IMG') {
@@ -76,8 +80,12 @@ const scrolling = () => {
                         let target = event.target;
                         if (target.tagName === 'A' && target.tagName !== 'IMG') {
                             event.preventDefault();
-                            sliding(target);
-                            popupMenu.style.display = 'none';
+                            if (target === null) {
+                                return;
+                            } else {
+                                sliding(target);
+                                popupMenu.style.display = 'none';
+                            }
 
                         }
                         if (target.tagName === 'IMG') {
@@ -148,7 +156,7 @@ const scrolling = () => {
 
                     }
                 });
-            } catch {}
+            } catch { }
         }
     }
 };

@@ -62,7 +62,6 @@ const calc = () => {
             if (target.value === 'schelkovo') {
                 let elems = [...inputs].filter((item) => item.name === 'card-type');
                 elems.forEach((elem) => {
-                    console.log(elem.checked === true);
                     if (elem.checked === true) {
                         if (elem.value === '1') {
                             if (promo.value === 'ТЕЛО2019') {
